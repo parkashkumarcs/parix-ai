@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ArrowRight, Phone, Zap, Globe, Smartphone, Brain, Palette, Award, Users, TrendingUp, CheckCircle } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, Testimonial, Stats, AnimatedSection } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, Testimonial, Stats, AnimatedSection, Background3D } from '../components';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -127,11 +127,12 @@ const Home = () => {
   return (
     <main className="bg-slate-950 text-white">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        {/* Background Effects */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden perspective-2000">
+        {/* 3D Background Effects */}
+        <Background3D variant="hero" />
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
-        <div className="hero-orb-1 absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
-        <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl" />
+        <div className="hero-orb-1 absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-glow-pulse" />
+        <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '2s' }} />
 
         <Container className="relative z-10 py-20">
           <div ref={heroContentRef} className="hero-content-wrapper max-w-4xl mx-auto text-center">
@@ -192,8 +193,9 @@ const Home = () => {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 lg:py-32">
-        <Container>
+      <section className="relative py-20 lg:py-32 overflow-hidden">
+        <Background3D variant="minimal" />
+        <Container className="relative z-10">
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="Our Work" title="Featured Projects" subtitle="Explore our portfolio of successful digital transformations." />
           </AnimatedSection>
@@ -304,8 +306,9 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 lg:py-32 bg-slate-950">
-        <Container>
+      <section className="relative py-20 lg:py-32 bg-slate-950 overflow-hidden">
+        <Background3D variant="minimal" />
+        <Container className="relative z-10">
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="Testimonials" title="What Our Clients Say" />
           </AnimatedSection>

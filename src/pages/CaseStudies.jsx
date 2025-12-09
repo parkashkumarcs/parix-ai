@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { ArrowRight, TrendingUp, Clock, Users, Zap } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, AnimatedSection } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, AnimatedSection, Background3D } from '../components';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -82,7 +82,8 @@ const CaseStudies = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
+        <Background3D variant="hero" />
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
         <Container className="relative z-10">
           <div className="casestudies-hero-content opacity-0">

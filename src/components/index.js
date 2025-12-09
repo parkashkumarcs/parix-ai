@@ -10,4 +10,5 @@ export { default as Stats, StatCard } from './Stats';
 export { default as Testimonial, TestimonialSlider } from './Testimonial';
 export { default as AnimatedSection } from './AnimatedSection';
 export { default as ScrollProgress } from './ScrollProgress';
+export { default as Background3D } from './Background3D';
 
