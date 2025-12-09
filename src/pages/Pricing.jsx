@@ -16,8 +16,8 @@ const Pricing = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo('.pricing-hero-content',
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+        { opacity: 0, y: 60, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power4.out' }
       );
     }, heroRef);
 

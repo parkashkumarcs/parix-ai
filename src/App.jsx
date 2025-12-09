@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Navbar, Footer } from './components';
+import { Navbar, Footer, ScrollProgress } from './components';
 import {
   Home,
   About,
@@ -16,13 +16,13 @@ import {
 
 /**
  * ScrollToTop Component
- * Scrolls to top on route change
+ * Scrolls to top on route change with smooth behavior
  */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
 
   return null;
@@ -30,12 +30,14 @@ const ScrollToTop = () => {
 
 /**
  * App Component
- * Main application with routing
+ * Main application with routing and scroll progress indicator
  */
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
       <div className="min-h-screen bg-slate-950 text-white">
         <Navbar />
         <Routes>

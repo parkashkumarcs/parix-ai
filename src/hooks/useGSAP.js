@@ -5,6 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Default GSAP settings for smooth animations
+gsap.defaults({
+  ease: 'power3.out',
+  duration: 0.8,
+});
+
 /**
  * Hook for fade-in animation on scroll
  * @param {Object} options - Animation options
@@ -41,6 +47,77 @@ export const useFadeIn = (options = {}) => {
       });
     };
   }, [delay, duration, y, start]);
+
+  return ref;
+};
+
+/**
+ * Hook for parallax effect on scroll
+ * @param {Object} options - Animation options
+ * @returns {Object} ref - Ref to attach to the element
+ */
+export const useParallax = (options = {}) => {
+  const ref = useRef(null);
+  const { speed = 0.5, direction = 'y' } = options;
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const movement = 100 * speed;
+
+    gsap.fromTo(
+      element,
+      { [direction]: -movement },
+      {
+        [direction]: movement,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === element) trigger.kill();
+      });
+    };
+  }, [speed, direction]);
+
+  return ref;
+};
+
+/**
+ * Hook for smooth scroll progress tracking
+ */
+export const useScrollProgress = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    gsap.to(element, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.3,
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === document.body) trigger.kill();
+      });
+    };
+  }, []);
 
   return ref;
 };

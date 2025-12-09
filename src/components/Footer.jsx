@@ -1,11 +1,57 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Footer Component
  * Main footer with company info, quick links, services, and social media
+ * Includes subtle scroll-triggered animations
  */
 const Footer = () => {
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate footer content on scroll into view
+      gsap.fromTo('.footer-content',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      // Stagger animation for footer columns
+      gsap.fromTo('.footer-column',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
@@ -39,11 +85,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-900 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <footer ref={footerRef} className="bg-slate-900 border-t border-white/10">
+      <div className="footer-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div className="lg:col-span-2">
+          <div className="footer-column lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-4">
               <Sparkles className="w-8 h-8 text-indigo-500" />
               <span className="text-2xl font-bold text-white">
@@ -70,7 +116,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="footer-column">
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -84,7 +130,7 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="footer-column">
             <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
               {services.map((link) => (
@@ -98,7 +144,7 @@ const Footer = () => {
           </div>
 
           {/* Resources */}
-          <div>
+          <div className="footer-column">
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-3">
               {resources.map((link) => (

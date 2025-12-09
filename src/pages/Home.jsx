@@ -59,50 +59,65 @@ const Home = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero entrance animation
-      const tl = gsap.timeline();
+      // Hero entrance animation with professional stagger
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo('.hero-badge',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+        { opacity: 0, y: 30, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8 }
       )
       .fromTo('.hero-title',
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-        '-=0.3'
-      )
-      .fromTo('.hero-subtitle',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        { opacity: 0, y: 60, filter: 'blur(15px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power4.out' },
         '-=0.4'
       )
+      .fromTo('.hero-subtitle',
+        { opacity: 0, y: 40, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8 },
+        '-=0.5'
+      )
       .fromTo('.hero-buttons',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 30, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7 },
+        '-=0.4'
       )
       .fromTo('.hero-trust',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power3.out' },
-        '-=0.2'
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        '-=0.3'
       );
 
-      // Floating background orbs animation
+      // Floating background orbs with parallax effect
       gsap.to('.hero-orb-1', {
-        y: -20,
-        x: 10,
-        duration: 4,
+        y: -30,
+        x: 15,
+        rotation: 5,
+        duration: 5,
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut'
       });
       gsap.to('.hero-orb-2', {
-        y: 20,
-        x: -10,
-        duration: 5,
+        y: 25,
+        x: -15,
+        rotation: -5,
+        duration: 6,
         repeat: -1,
         yoyo: true,
         ease: 'sine.inOut'
+      });
+
+      // Parallax effect on scroll for hero section
+      gsap.to('.hero-content-wrapper', {
+        y: 100,
+        opacity: 0.3,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
       });
     }, heroRef);
 
@@ -119,7 +134,7 @@ const Home = () => {
         <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl" />
 
         <Container className="relative z-10 py-20">
-          <div ref={heroContentRef} className="max-w-4xl mx-auto text-center">
+          <div ref={heroContentRef} className="hero-content-wrapper max-w-4xl mx-auto text-center">
             {/* Badge */}
             <div className="hero-badge inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 border border-indigo-500/30 mb-8 opacity-0">
               <Award className="w-4 h-4 text-indigo-400 mr-2" />

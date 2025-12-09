@@ -15,20 +15,20 @@ const About = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
       tl.fromTo('.about-hero-title',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
+        { opacity: 0, y: 50, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.9 }
       )
       .fromTo('.about-hero-text',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 40, filter: 'blur(8px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 },
+        '-=0.5'
       )
       .fromTo('.about-hero-belief',
-        { opacity: 0, scale: 0.95 },
-        { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' },
-        '-=0.2'
+        { opacity: 0, scale: 0.9, filter: 'blur(10px)' },
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.6 },
+        '-=0.3'
       );
     }, heroRef);
 
