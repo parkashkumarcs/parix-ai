@@ -1,178 +1,95 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-@theme {
-  --color-primary-50: #fdf2f8;
-  --color-primary-100: #fce7f3;
-  --color-primary-200: #fbcfe8;
-  --color-primary-300: #f9a8d4;
-  --color-primary-400: #f472b6;
-  --color-primary-500: #ec4899;
-  --color-primary-600: #db2777;
-  --color-primary-700: #be185d;
-  --color-primary-800: #9d174d;
-  --color-primary-900: #831843;
-
-  --color-dark-100: #1a1a2e;
-  --color-dark-200: #16162a;
-  --color-dark-300: #0f0f1a;
-  --color-dark-400: #0a0a14;
-  --color-dark-500: #050510;
-
-  --color-accent-purple: #8b5cf6;
-  --color-accent-blue: #3b82f6;
-  --color-accent-cyan: #06b6d4;
-  --color-accent-pink: #ec4899;
-  --color-accent-orange: #f97316;
-}
-
+/* Custom CSS Variables for Parix.ai Brand */
 :root {
-  --gradient-primary: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%);
-  --gradient-dark: linear-gradient(180deg, #0a0a14 0%, #1a1a2e 100%);
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-secondary: #ec4899;
+  --color-accent: #f472b6;
+  --color-dark: #0f172a;
+  --color-dark-secondary: #1e293b;
+  --color-light: #f8fafc;
+  --color-gray: #94a3b8;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #050510;
-  color: #ffffff;
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-/* Custom Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a14;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ec4899, #8b5cf6);
+  background: #6366f1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #f472b6, #a78bfa);
+  background: #4f46e5;
 }
 
-/* Gradient Text */
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Gradient text */
 .gradient-text {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glass Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
 }
 
-/* Glow Effects */
-.glow-pink {
-  box-shadow: 0 0 40px rgba(236, 72, 153, 0.3);
-}
-
-.glow-purple {
-  box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
-}
-
-.glow-blue {
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
-}
-
-/* Animation Classes */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Mesh Background */
-.mesh-bg {
-  background:
-    radial-gradient(at 40% 20%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-}
-
-/* Section Padding */
-.section-padding {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-@media (min-width: 640px) {
-  .section-padding {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .section-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-.container-custom {
-  width: 100%;
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container-custom {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-custom {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Card equal heights in grids */
-.grid > .glass {
-  height: 100%;
+.gradient-bg-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
