@@ -1,11 +1,28 @@
+import { useEffect, useRef } from 'react';
 import { ArrowRight, Calendar, Clock, User } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Blog Page Component
  * Blog listing with categories and featured posts
  */
 const Blog = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.blog-hero-content',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
   // Categories
   const categories = ['All', 'AI & Automation', 'Web Development', 'Product Design', 'SaaS Growth', 'Case Studies'];
 
@@ -76,10 +93,12 @@ const Blog = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-indigo-500/10" />
         <Container className="relative z-10">
-          <SectionTitle label="Blog" title="Insights, Strategies & Automation Playbooks" subtitle="Explore deep guides, real-world examples, and tutorials on AI, web development, workflow automation, and digital growth." />
+          <div className="blog-hero-content opacity-0">
+            <SectionTitle label="Blog" title="Insights, Strategies & Automation Playbooks" subtitle="Explore deep guides, real-world examples, and tutorials on AI, web development, workflow automation, and digital growth." />
+          </div>
         </Container>
       </section>
 
@@ -99,32 +118,36 @@ const Blog = () => {
       {/* Blog Grid */}
       <section className="py-20 lg:py-32">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <Card key={index} variant="gradient" className="group overflow-hidden cursor-pointer">
-                <div className="aspect-video overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                </div>
-                <CardContent>
-                  <div className="flex items-center gap-4 mb-3">
-                    <CardBadge>{post.category}</CardBadge>
-                    {post.featured && <span className="text-xs text-pink-400 font-semibold">Featured</span>}
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.map((post, index) => (
+                <Card key={index} variant="gradient" className="group overflow-hidden cursor-pointer">
+                  <div className="aspect-video overflow-hidden">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
-                  <CardTitle className="group-hover:text-indigo-400 transition-colors">{post.title}</CardTitle>
-                  <CardDescription className="mb-4">{post.excerpt}</CardDescription>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <div className="flex items-center"><User className="w-4 h-4 mr-1" />{post.author}</div>
-                    <div className="flex items-center"><Clock className="w-4 h-4 mr-1" />{post.readTime}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <CardContent>
+                    <div className="flex items-center gap-4 mb-3">
+                      <CardBadge>{post.category}</CardBadge>
+                      {post.featured && <span className="text-xs text-pink-400 font-semibold">Featured</span>}
+                    </div>
+                    <CardTitle className="group-hover:text-indigo-400 transition-colors">{post.title}</CardTitle>
+                    <CardDescription className="mb-4">{post.excerpt}</CardDescription>
+                    <div className="flex items-center justify-between text-sm text-gray-500">
+                      <div className="flex items-center"><User className="w-4 h-4 mr-1" />{post.author}</div>
+                      <div className="flex items-center"><Clock className="w-4 h-4 mr-1" />{post.readTime}</div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
 
           {/* Load More */}
-          <div className="text-center mt-12">
-            <Button variant="outline" icon={ArrowRight} iconPosition="right">Load More Articles</Button>
-          </div>
+          <AnimatedSection animation="fadeUp" delay={0.3}>
+            <div className="text-center mt-12">
+              <Button variant="outline" icon={ArrowRight} iconPosition="right">Load More Articles</Button>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
     </main>

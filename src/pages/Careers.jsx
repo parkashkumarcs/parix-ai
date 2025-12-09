@@ -1,11 +1,28 @@
+import { useEffect, useRef } from 'react';
 import { MapPin, Clock, DollarSign, Briefcase, Globe, BookOpen, Calendar, Heart, ArrowRight } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Careers Page Component
  * Job listings and company culture
  */
 const Careers = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.careers-hero-content',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
   // Benefits
   const benefits = [
     { icon: Globe, title: '100% Remote', description: 'Work from anywhere in the world.' },
@@ -29,63 +46,75 @@ const Careers = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
         <Container className="relative z-10">
-          <SectionTitle label="Careers" title="Join the Parix.ai Team" subtitle="We are building a future where automation and AI power every business. Join a team that values creativity, engineering excellence, and real impact." />
+          <div className="careers-hero-content opacity-0">
+            <SectionTitle label="Careers" title="Join the Parix.ai Team" subtitle="We are building a future where automation and AI power every business. Join a team that values creativity, engineering excellence, and real impact." />
+          </div>
         </Container>
       </section>
 
       {/* Why Join Us */}
       <section className="py-20 lg:py-32 bg-slate-900/50">
         <Container>
-          <SectionTitle title="Why Join Us?" subtitle="We offer more than just a job — we offer a career you'll love." />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card key={index} variant="glass" className="p-6">
-                <div className="w-12 h-12 mb-4 bg-indigo-500/20 rounded-xl flex items-center justify-center">
-                  <benefit.icon className="w-6 h-6 text-indigo-400" />
-                </div>
-                <CardTitle className="text-lg">{benefit.title}</CardTitle>
-                <CardDescription>{benefit.description}</CardDescription>
-              </Card>
-            ))}
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle title="Why Join Us?" subtitle="We offer more than just a job — we offer a career you'll love." />
+          </AnimatedSection>
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {benefits.map((benefit, index) => (
+                <Card key={index} variant="glass" className="p-6">
+                  <div className="w-12 h-12 mb-4 bg-indigo-500/20 rounded-xl flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <CardTitle className="text-lg">{benefit.title}</CardTitle>
+                  <CardDescription>{benefit.description}</CardDescription>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Open Positions */}
       <section className="py-20 lg:py-32">
         <Container>
-          <SectionTitle title="Open Positions" subtitle="Find your next opportunity with us." />
-          <div className="space-y-4">
-            {jobs.map((job, index) => (
-              <Card key={index} variant="gradient" className="p-6 hover:border-indigo-500/50 transition-all cursor-pointer">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <CardBadge>{job.department}</CardBadge>
-                      <span className="text-sm text-gray-500">{job.type}</span>
-                      <span className="text-sm text-gray-500 flex items-center"><MapPin className="w-3 h-3 mr-1" />{job.location}</span>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle title="Open Positions" subtitle="Find your next opportunity with us." />
+          </AnimatedSection>
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="space-y-4">
+              {jobs.map((job, index) => (
+                <Card key={index} variant="gradient" className="p-6 hover:border-indigo-500/50 transition-all cursor-pointer">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <CardBadge>{job.department}</CardBadge>
+                        <span className="text-sm text-gray-500">{job.type}</span>
+                        <span className="text-sm text-gray-500 flex items-center"><MapPin className="w-3 h-3 mr-1" />{job.location}</span>
+                      </div>
+                      <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
+                      <CardDescription>{job.description}</CardDescription>
                     </div>
-                    <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
-                    <CardDescription>{job.description}</CardDescription>
+                    <Button to="/contact" variant="outline" icon={ArrowRight} iconPosition="right">Apply Now</Button>
                   </div>
-                  <Button to="/contact" variant="outline" icon={ArrowRight} iconPosition="right">Apply Now</Button>
-                </div>
-              </Card>
-            ))}
-          </div>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
         <Container size="sm">
-          <div className="text-center">
-            <SectionTitle title="Don't see the right role?" subtitle="We're always looking for talented people. Send us your resume and let's talk." />
-            <Button to="/contact" size="lg">Get in Touch</Button>
-          </div>
+          <AnimatedSection animation="scaleIn">
+            <div className="text-center">
+              <SectionTitle title="Don't see the right role?" subtitle="We're always looking for talented people. Send us your resume and let's talk." />
+              <Button to="/contact" size="lg">Get in Touch</Button>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
     </main>

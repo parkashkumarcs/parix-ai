@@ -1,5 +1,10 @@
+import { useEffect, useRef } from 'react';
 import { ArrowRight, Phone, Zap, Globe, Smartphone, Brain, Palette, Award, Users, TrendingUp, CheckCircle } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, Testimonial, Stats } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, Testimonial, Stats, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Home Page Component
@@ -48,36 +53,92 @@ const Home = () => {
     { name: 'Emma Davis', role: 'Design Director', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80' },
   ];
 
+  // Hero animation ref
+  const heroRef = useRef(null);
+  const heroContentRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero entrance animation
+      const tl = gsap.timeline();
+
+      tl.fromTo('.hero-badge',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+      )
+      .fromTo('.hero-title',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+        '-=0.3'
+      )
+      .fromTo('.hero-subtitle',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.4'
+      )
+      .fromTo('.hero-buttons',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
+        '-=0.3'
+      )
+      .fromTo('.hero-trust',
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5, ease: 'power3.out' },
+        '-=0.2'
+      );
+
+      // Floating background orbs animation
+      gsap.to('.hero-orb-1', {
+        y: -20,
+        x: 10,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+      gsap.to('.hero-orb-2', {
+        y: 20,
+        x: -10,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <main className="bg-slate-950 text-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl" />
-        
+        <div className="hero-orb-1 absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
+        <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl" />
+
         <Container className="relative z-10 py-20">
-          <div className="max-w-4xl mx-auto text-center">
+          <div ref={heroContentRef} className="max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 border border-indigo-500/30 mb-8">
+            <div className="hero-badge inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 border border-indigo-500/30 mb-8 opacity-0">
               <Award className="w-4 h-4 text-indigo-400 mr-2" />
               <span className="text-sm text-indigo-300">Award-winning AI & Development Studio</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="hero-title text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight opacity-0">
               Think smarter. Build faster.{' '}
               <span className="gradient-text">Automate everything.</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="hero-subtitle text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto opacity-0">
               At Parix.ai, we help businesses break limits by combining AI-powered workflow automation with world-class web & app development. Transform your operations, scale effortlessly, and unlock your competitive edge.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div className="hero-buttons flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 opacity-0">
               <Button to="/contact" size="lg" icon={ArrowRight} iconPosition="right">
                 Get Started
               </Button>
@@ -87,7 +148,7 @@ const Home = () => {
             </div>
 
             {/* Trust Badge */}
-            <p className="text-sm text-gray-500">Trusted by high-growth companies globally.</p>
+            <p className="hero-trust text-sm text-gray-500 opacity-0">Trusted by high-growth companies globally.</p>
           </div>
         </Container>
       </section>
@@ -95,41 +156,49 @@ const Home = () => {
       {/* Impact Section */}
       <section className="py-20 lg:py-32 bg-slate-900/50">
         <Container>
-          <SectionTitle
-            label="Our Impact"
-            title="We help companies grow through automation-driven digital innovation."
-            subtitle="From early-stage startups to funded enterprises, Parix.ai builds the systems that power modern businesses."
-          />
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center p-8 bg-gradient-to-br from-indigo-500/10 to-pink-500/10 rounded-3xl border border-white/10">
-              <div className="text-6xl md:text-8xl font-bold gradient-text mb-4">81+</div>
-              <p className="text-lg text-gray-300 mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
-              <p className="text-gray-500">Our work reduces operational cost, boosts productivity, and enables teams to do more with less.</p>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle
+              label="Our Impact"
+              title="We help companies grow through automation-driven digital innovation."
+              subtitle="From early-stage startups to funded enterprises, Parix.ai builds the systems that power modern businesses."
+            />
+          </AnimatedSection>
+
+          <AnimatedSection animation="scaleIn" delay={0.2}>
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center p-8 bg-gradient-to-br from-indigo-500/10 to-pink-500/10 rounded-3xl border border-white/10">
+                <div className="text-6xl md:text-8xl font-bold gradient-text mb-4">81+</div>
+                <p className="text-lg text-gray-300 mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
+                <p className="text-gray-500">Our work reduces operational cost, boosts productivity, and enables teams to do more with less.</p>
+              </div>
             </div>
-          </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Portfolio Section */}
       <section className="py-20 lg:py-32">
         <Container>
-          <SectionTitle label="Our Work" title="Featured Projects" subtitle="Explore our portfolio of successful digital transformations." />
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle label="Our Work" title="Featured Projects" subtitle="Explore our portfolio of successful digital transformations." />
+          </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} variant="gradient" className="group overflow-hidden">
-                <div className="aspect-video overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                </div>
-                <CardContent>
-                  <CardBadge>{project.category}</CardBadge>
-                  <CardTitle className="mt-3">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project, index) => (
+                <Card key={index} variant="gradient" className="group overflow-hidden">
+                  <div className="aspect-video overflow-hidden">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  </div>
+                  <CardContent>
+                    <CardBadge>{project.category}</CardBadge>
+                    <CardTitle className="mt-3">{project.title}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
@@ -137,7 +206,7 @@ const Home = () => {
       <section className="py-20 lg:py-32 bg-slate-950">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <AnimatedSection animation="slideLeft">
               <SectionTitle align="left" label="Why Us" title="We build faster, smarter, and stronger digital ecosystems." subtitle="Our team blends engineering, automation, and design expertise to ship reliable, scalable, and future-proof products." />
               <p className="text-gray-400 mb-6">We help brands accelerate growth with:</p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
@@ -149,15 +218,15 @@ const Home = () => {
                 ))}
               </ul>
               <Button to="/contact" icon={ArrowRight} iconPosition="right">Work With Us</Button>
-            </div>
-            <div className="relative">
+            </AnimatedSection>
+            <AnimatedSection animation="slideRight" delay={0.2}>
               <div className="aspect-square rounded-3xl bg-gradient-to-br from-indigo-500/20 to-pink-500/20 border border-white/10 p-8 flex items-center justify-center">
                 <div className="text-center">
                   <TrendingUp className="w-24 h-24 text-indigo-400 mx-auto mb-4" />
                   <p className="text-2xl font-bold text-white">Let's build something extraordinary together.</p>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </Container>
       </section>
@@ -165,90 +234,110 @@ const Home = () => {
       {/* Services Overview Section */}
       <section className="py-20 lg:py-32 bg-slate-900">
         <Container>
-          <SectionTitle label="What We Do" title="Our Core Services" subtitle="Comprehensive solutions to power your digital transformation." />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <Card key={index} variant="dark" className="p-8 text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center">
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
-                <CardTitle className="mb-3">{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </Card>
-            ))}
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle label="What We Do" title="Our Core Services" subtitle="Comprehensive solutions to power your digital transformation." />
+          </AnimatedSection>
+          <AnimatedSection animation="stagger" stagger={0.15}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {services.map((service, index) => (
+                <Card key={index} variant="dark" className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                    <service.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="mb-3">{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Collaboration Section */}
       <section className="py-20 lg:py-32 bg-slate-950">
         <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <SectionTitle title="We collaborate closely with founders, startups, and enterprises." subtitle="Working with Parix.ai means working with real people who care about your product as much as you do." />
-            <p className="text-gray-400 mb-8">We transform ideas into production-ready systems with a mix of creativity, clarity, and engineering excellence.</p>
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <div className="max-w-4xl mx-auto text-center">
+              <SectionTitle title="We collaborate closely with founders, startups, and enterprises." subtitle="Working with Parix.ai means working with real people who care about your product as much as you do." />
+              <p className="text-gray-400 mb-8">We transform ideas into production-ready systems with a mix of creativity, clarity, and engineering excellence.</p>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Team Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-950">
         <Container>
-          <SectionTitle label="Our Team" title="Meet the team behind your next big leap." subtitle="A passionate group of developers, designers, and AI engineers dedicated to building systems that scale." />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="text-center group">
-                <div className="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle label="Our Team" title="Meet the team behind your next big leap." subtitle="A passionate group of developers, designers, and AI engineers dedicated to building systems that scale." />
+          </AnimatedSection>
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="text-center group">
+                  <div className="relative mb-4 overflow-hidden rounded-2xl aspect-square">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+                  </div>
+                  <h3 className="font-semibold text-white">{member.name}</h3>
+                  <p className="text-sm text-gray-400">{member.role}</p>
                 </div>
-                <h3 className="font-semibold text-white">{member.name}</h3>
-                <p className="text-sm text-gray-400">{member.role}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-20 lg:py-32 bg-slate-950">
         <Container>
-          <SectionTitle label="Testimonials" title="What Our Clients Say" />
-          <div className="max-w-3xl mx-auto">
-            <Testimonial quote="Parix.ai redefined how our team works. Automations that once took days now run in seconds. Their development and AI expertise is unmatched." author="Daniel M." role="Founder & CEO" rating={5} />
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle label="Testimonials" title="What Our Clients Say" />
+          </AnimatedSection>
+          <AnimatedSection animation="scaleIn" delay={0.2}>
+            <div className="max-w-3xl mx-auto">
+              <Testimonial quote="Parix.ai redefined how our team works. Automations that once took days now run in seconds. Their development and AI expertise is unmatched." author="Daniel M." role="Founder & CEO" rating={5} />
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Blog Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-pink-500/10 to-indigo-500/10">
         <Container>
-          <SectionTitle label="Insights" title="Insights that move businesses forward." subtitle="We share strategies, tutorials, and automation frameworks to help you scale faster and smarter." />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {blogPosts.map((post, index) => (
-              <Card key={index} to="/blog" variant="glass" className="group overflow-hidden">
-                <div className="aspect-video overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                </div>
-                <CardContent>
-                  <CardTitle className="text-lg">{post.title}</CardTitle>
-                  <CardDescription className="text-sm">{post.description}</CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <SectionTitle label="Insights" title="Insights that move businesses forward." subtitle="We share strategies, tutorials, and automation frameworks to help you scale faster and smarter." />
+          </AnimatedSection>
+          <AnimatedSection animation="stagger" stagger={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {blogPosts.map((post, index) => (
+                <Card key={index} to="/blog" variant="glass" className="group overflow-hidden">
+                  <div className="aspect-video overflow-hidden">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  </div>
+                  <CardContent>
+                    <CardTitle className="text-lg">{post.title}</CardTitle>
+                    <CardDescription className="text-sm">{post.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
 
       {/* Newsletter Section */}
       <section className="py-20 lg:py-32 bg-slate-900">
         <Container size="sm">
-          <div className="text-center">
-            <SectionTitle title="Stay updated. Stay ahead." subtitle="Join our newsletter to receive automation tips, product updates, and business insights." />
-            <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <input type="email" placeholder="Enter your email" className="flex-1 px-6 py-4 bg-slate-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-              <Button type="submit">Subscribe</Button>
-            </form>
-          </div>
+          <AnimatedSection animation="fadeUp">
+            <div className="text-center">
+              <SectionTitle title="Stay updated. Stay ahead." subtitle="Join our newsletter to receive automation tips, product updates, and business insights." />
+              <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                <input type="email" placeholder="Enter your email" className="flex-1 px-6 py-4 bg-slate-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <Button type="submit">Subscribe</Button>
+              </form>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
     </main>

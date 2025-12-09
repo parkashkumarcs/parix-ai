@@ -1,12 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, Input, TextArea, Select } from '../components';
+import { Container, SectionTitle, Button, Card, Input, TextArea, Select, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Contact Page Component
  * Contact form and company information
  */
 const Contact = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.contact-hero-content',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,14 +55,16 @@ const Contact = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
         <Container className="relative z-10">
-          <SectionTitle
-            label="Contact Us"
-            title="Let's Build Something Powerful Together"
-            subtitle="Have a project idea? Need automation? Want to scale faster? We're here to help."
-          />
+          <div className="contact-hero-content opacity-0">
+            <SectionTitle
+              label="Contact Us"
+              title="Let's Build Something Powerful Together"
+              subtitle="Have a project idea? Need automation? Want to scale faster? We're here to help."
+            />
+          </div>
         </Container>
       </section>
 
@@ -55,7 +73,7 @@ const Contact = () => {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
-            <div>
+            <AnimatedSection animation="slideLeft">
               <h2 className="text-3xl font-bold text-white mb-6">Get in Touch</h2>
               <p className="text-gray-400 mb-8">
                 Whether you're looking to automate your workflows, build a new product, or transform your digital presence, we'd love to hear from you.
@@ -96,20 +114,22 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
 
             {/* Contact Form */}
-            <Card variant="gradient" className="p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
-              <form onSubmit={handleSubmit}>
-                <Input label="Name" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />
-                <Input label="Email" name="email" type="email" placeholder="your@email.com" value={formData.email} onChange={handleChange} required />
-                <Input label="Business Name" name="business" placeholder="Your company name" value={formData.business} onChange={handleChange} />
-                <Select label="Services Needed" name="service" options={serviceOptions} value={formData.service} onChange={handleChange} required />
-                <TextArea label="Message" name="message" placeholder="Tell us about your project..." value={formData.message} onChange={handleChange} rows={5} required />
-                <Button type="submit" className="w-full" icon={Send} iconPosition="right">Send Message</Button>
-              </form>
-            </Card>
+            <AnimatedSection animation="slideRight" delay={0.2}>
+              <Card variant="gradient" className="p-8">
+                <h3 className="text-2xl font-bold text-white mb-6">Send Us a Message</h3>
+                <form onSubmit={handleSubmit}>
+                  <Input label="Name" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />
+                  <Input label="Email" name="email" type="email" placeholder="your@email.com" value={formData.email} onChange={handleChange} required />
+                  <Input label="Business Name" name="business" placeholder="Your company name" value={formData.business} onChange={handleChange} />
+                  <Select label="Services Needed" name="service" options={serviceOptions} value={formData.service} onChange={handleChange} required />
+                  <TextArea label="Message" name="message" placeholder="Tell us about your project..." value={formData.message} onChange={handleChange} rows={5} required />
+                  <Button type="submit" className="w-full" icon={Send} iconPosition="right">Send Message</Button>
+                </form>
+              </Card>
+            </AnimatedSection>
           </div>
         </Container>
       </section>

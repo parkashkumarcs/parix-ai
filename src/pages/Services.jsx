@@ -1,11 +1,28 @@
+import { useEffect, useRef } from 'react';
 import { Zap, Globe, Smartphone, Brain, Rocket, Palette, CheckCircle, ArrowRight } from 'lucide-react';
-import { Container, SectionTitle, Button, Card, CardContent } from '../components';
+import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Services Page Component
  * Comprehensive list of all services offered
  */
 const Services = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.services-hero-content',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
   // All services data
   const services = [
     {
@@ -73,14 +90,16 @@ const Services = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
         <Container className="relative z-10">
-          <SectionTitle
-            label="Our Services"
-            title="Comprehensive Solutions for Digital Growth"
-            subtitle="From automation to development, we provide end-to-end services to transform your business."
-          />
+          <div className="services-hero-content opacity-0">
+            <SectionTitle
+              label="Our Services"
+              title="Comprehensive Solutions for Digital Growth"
+              subtitle="From automation to development, we provide end-to-end services to transform your business."
+            />
+          </div>
         </Container>
       </section>
 
@@ -90,14 +109,14 @@ const Services = () => {
           <Container>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Content */}
-              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+              <AnimatedSection animation={index % 2 === 0 ? 'slideLeft' : 'slideRight'} className={index % 2 === 1 ? 'lg:order-2' : ''}>
                 <div className="w-16 h-16 mb-6 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center">
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">{service.title}</h2>
                 <p className="text-xl text-indigo-400 mb-4">{service.tagline}</p>
                 <p className="text-gray-400 mb-6">{service.description}</p>
-                
+
                 <h4 className="text-lg font-semibold text-white mb-3">What we build:</h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
                   {service.features.map((feature, i) => (
@@ -114,10 +133,10 @@ const Services = () => {
                 </div>
 
                 <Button to="/contact" icon={ArrowRight} iconPosition="right">Get Started</Button>
-              </div>
+              </AnimatedSection>
 
               {/* Tech Stack */}
-              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+              <AnimatedSection animation={index % 2 === 0 ? 'slideRight' : 'slideLeft'} delay={0.2} className={index % 2 === 1 ? 'lg:order-1' : ''}>
                 <Card variant="gradient" className="p-8">
                   <h4 className="text-lg font-semibold text-white mb-4">Technologies & Tools</h4>
                   <div className="flex flex-wrap gap-2">
@@ -128,7 +147,7 @@ const Services = () => {
                     ))}
                   </div>
                 </Card>
-              </div>
+              </AnimatedSection>
             </div>
           </Container>
         </section>
@@ -137,10 +156,12 @@ const Services = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
         <Container size="sm">
-          <div className="text-center">
-            <SectionTitle title="Ready to transform your business?" subtitle="Let's discuss how we can help you achieve your goals." />
-            <Button to="/contact" size="lg" icon={ArrowRight} iconPosition="right">Start a Project</Button>
-          </div>
+          <AnimatedSection animation="scaleIn">
+            <div className="text-center">
+              <SectionTitle title="Ready to transform your business?" subtitle="Let's discuss how we can help you achieve your goals." />
+              <Button to="/contact" size="lg" icon={ArrowRight} iconPosition="right">Start a Project</Button>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
     </main>

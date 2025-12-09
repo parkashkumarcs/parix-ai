@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sparkles } from 'lucide-react';
+import gsap from 'gsap';
 
 /**
  * Navbar Component
@@ -11,6 +12,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navRef = useRef(null);
+  const hasAnimated = useRef(false);
 
   // Navigation links configuration
   const navLinks = [
@@ -39,8 +42,24 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
+  // Navbar entrance animation - only on first mount
+  useEffect(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(navRef.current,
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', delay: 0.2 }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-slate-900/95 backdrop-blur-md shadow-lg'

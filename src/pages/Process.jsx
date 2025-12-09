@@ -1,11 +1,28 @@
+import { useEffect, useRef } from 'react';
 import { Search, PenTool, Code, TestTube, Rocket, HeartHandshake } from 'lucide-react';
-import { Container, SectionTitle, Button } from '../components';
+import { Container, SectionTitle, Button, AnimatedSection } from '../components';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Process Page Component
  * 6-step process visualization
  */
 const Process = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.process-hero-content',
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
   // Process steps data
   const steps = [
     {
@@ -49,14 +66,16 @@ const Process = () => {
   return (
     <main className="bg-slate-950 text-white pt-20">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 relative overflow-hidden">
+      <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
         <Container className="relative z-10">
-          <SectionTitle
-            label="Our Process"
-            title="How We Work"
-            subtitle="A proven methodology that delivers results. From discovery to ongoing support, we're with you every step of the way."
-          />
+          <div className="process-hero-content opacity-0">
+            <SectionTitle
+              label="Our Process"
+              title="How We Work"
+              subtitle="A proven methodology that delivers results. From discovery to ongoing support, we're with you every step of the way."
+            />
+          </div>
         </Container>
       </section>
 
@@ -70,24 +89,26 @@ const Process = () => {
             {/* Steps */}
             <div className="space-y-12 lg:space-y-24">
               {steps.map((step, index) => (
-                <div key={index} className={`relative flex flex-col lg:flex-row items-start gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  {/* Content */}
-                  <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-right' : ''}`}>
-                    <div className={`p-8 bg-slate-800/50 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}>
-                      <span className="text-5xl font-bold gradient-text">{step.number}</span>
-                      <h3 className="text-2xl font-bold text-white mt-4 mb-3">{step.title}</h3>
-                      <p className="text-gray-400">{step.description}</p>
+                <AnimatedSection key={index} animation={index % 2 === 0 ? 'slideLeft' : 'slideRight'} delay={index * 0.1}>
+                  <div className={`relative flex flex-col lg:flex-row items-start gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                    {/* Content */}
+                    <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-right' : ''}`}>
+                      <div className={`p-8 bg-slate-800/50 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}>
+                        <span className="text-5xl font-bold gradient-text">{step.number}</span>
+                        <h3 className="text-2xl font-bold text-white mt-4 mb-3">{step.title}</h3>
+                        <p className="text-gray-400">{step.description}</p>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Icon - Center */}
-                  <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-16 h-16 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center z-10 hidden md:flex">
-                    <step.icon className="w-8 h-8 text-white" />
-                  </div>
+                    {/* Icon - Center */}
+                    <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-16 h-16 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center z-10 hidden md:flex">
+                      <step.icon className="w-8 h-8 text-white" />
+                    </div>
 
-                  {/* Spacer for alternating layout */}
-                  <div className="flex-1 hidden lg:block" />
-                </div>
+                    {/* Spacer for alternating layout */}
+                    <div className="flex-1 hidden lg:block" />
+                  </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -97,10 +118,12 @@ const Process = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
         <Container size="sm">
-          <div className="text-center">
-            <SectionTitle title="Ready to start your project?" subtitle="Let's work together to bring your vision to life." />
-            <Button to="/contact" size="lg">Get Started Today</Button>
-          </div>
+          <AnimatedSection animation="scaleIn">
+            <div className="text-center">
+              <SectionTitle title="Ready to start your project?" subtitle="Let's work together to bring your vision to life." />
+              <Button to="/contact" size="lg">Get Started Today</Button>
+            </div>
+          </AnimatedSection>
         </Container>
       </section>
     </main>
