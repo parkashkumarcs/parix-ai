@@ -128,7 +128,7 @@ const BrandingDesign = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/Landing page (1).png" alt="Branding Design" className="w-full h-full object-cover" />
+          <img src={getImg('/images/Landing page (1).png')} alt="Branding Design" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">

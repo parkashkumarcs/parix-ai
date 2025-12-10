@@ -128,7 +128,7 @@ const MobileDevelopment = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/MobileAppBanner (1).png" alt="Mobile Development" className="w-full h-full object-cover" />
+          <img src={getImg('/images/MobileAppBanner (1).png')} alt="Mobile Development" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">

@@ -6,6 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Careers Page Component
  * Job listings and company culture
@@ -135,7 +138,7 @@ const Careers = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/Marketing Web solution (1).png" alt="Careers" className="w-full h-full object-cover" />
+          <img src={getImg('/images/Marketing Web solution (1).png')} alt="Careers" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">

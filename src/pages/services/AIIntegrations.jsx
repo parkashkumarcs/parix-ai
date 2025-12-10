@@ -128,7 +128,7 @@ const AIIntegrations = () => {
       {/* CTA Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/Gemini_Generated_Image_tqurtetqurtetqur.png" alt="AI Integrations" className="w-full h-full object-cover" />
+          <img src={getImg('/images/Gemini_Generated_Image_tqurtetqurtetqur.png')} alt="AI Integrations" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">
