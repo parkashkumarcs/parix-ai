@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parix.ai</title>
+    <script>
+      // Single Page App GitHub Pages redirect
+      // This script takes the current URL path and redirects to index.html
+      // while storing the path in sessionStorage for the app to handle
+      const pathSegmentsToKeep = 1; // Keep '/parix-ai' base path segment
+      
+      const l = window.location;
+      const pathArray = l.pathname.split('/');
+      
+      // Store the path after the base for the SPA to read
+      const redirectPath = '/' + pathArray.slice(pathSegmentsToKeep + 1).join('/');
+      
+      sessionStorage.setItem('redirectPath', redirectPath + l.search + l.hash);
+      
+      // Redirect to the base path (index.html)
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        '/' + pathArray.slice(1, pathSegmentsToKeep + 1).join('/') + '/'
+      );
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
+
