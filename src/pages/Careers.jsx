@@ -64,15 +64,26 @@ const Careers = () => {
           </AnimatedSection>
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {benefits.map((benefit, index) => (
-                <Card key={index} variant="default" className="p-6">
-                  <div className="w-12 h-12 mb-4 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <benefit.icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <CardTitle className="text-lg">{benefit.title}</CardTitle>
-                  <CardDescription>{benefit.description}</CardDescription>
-                </Card>
-              ))}
+              {benefits.map((benefit, index) => {
+                const cardStyles = [
+                  { bg: '#e0f2fe', iconBg: '#0284c7', iconText: 'white', titleColor: '#0c4a6e' }, // Sky Blue
+                  { bg: '#dcfce7', iconBg: '#16a34a', iconText: 'white', titleColor: '#14532d' }, // Green
+                  { bg: '#fef3c7', iconBg: '#d97706', iconText: 'white', titleColor: '#78350f' }, // Amber
+                  { bg: '#fce7f3', iconBg: '#db2777', iconText: 'white', titleColor: '#831843' }, // Pink
+                  { bg: '#e0e7ff', iconBg: '#4f46e5', iconText: 'white', titleColor: '#312e81' }, // Indigo
+                  { bg: '#f3e8ff', iconBg: '#9333ea', iconText: 'white', titleColor: '#581c87' }, // Purple
+                ];
+                const style = cardStyles[index % cardStyles.length];
+                return (
+                  <Card key={index} variant="default" className="p-6 border-0" style={{ backgroundColor: style.bg }}>
+                    <div className="w-12 h-12 mb-4 rounded-xl flex items-center justify-center" style={{ backgroundColor: style.iconBg }}>
+                      <benefit.icon className="w-6 h-6" style={{ color: style.iconText }} />
+                    </div>
+                    <CardTitle className="text-lg" style={{ color: style.titleColor }}>{benefit.title}</CardTitle>
+                    <CardDescription>{benefit.description}</CardDescription>
+                  </Card>
+                );
+              })}
             </div>
           </AnimatedSection>
         </Container>
@@ -86,8 +97,21 @@ const Careers = () => {
           </AnimatedSection>
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="space-y-4">
-              {jobs.map((job, index) => (
-                <Card key={index} variant="default" className="p-6 hover:border-blue-300 transition-all cursor-pointer">
+              {jobs.map((job, index) => {
+                const cardStyles = [
+                  { bg: '#eef6ff', border: '#bfdbfe' }, // Light Blue
+                  { bg: '#f0fdf4', border: '#bbf7d0' }, // Light Green
+                  { bg: '#fefce8', border: '#fef08a' }, // Light Yellow
+                  { bg: '#fdf4ff', border: '#f5d0fe' }, // Light Pink
+                ];
+                const style = cardStyles[index % cardStyles.length];
+                return (
+                <Card
+                  key={index}
+                  variant="default"
+                  className="p-6 hover:shadow-md transition-all cursor-pointer"
+                  style={{ backgroundColor: style.bg, borderColor: style.border }}
+                >
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -101,7 +125,8 @@ const Careers = () => {
                     <Button to="/contact" variant="outline" icon={ArrowRight} iconPosition="right">Apply Now</Button>
                   </div>
                 </Card>
-              ))}
+                );
+              })}
             </div>
           </AnimatedSection>
         </Container>

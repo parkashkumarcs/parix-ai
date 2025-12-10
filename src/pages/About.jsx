@@ -122,7 +122,7 @@ const About = () => {
       </section>
 
       {/* What Makes Us Different */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32" style={{ backgroundColor: '#f0f7ff' }}>
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="Why Choose Us" title="What Makes Us Different" />
@@ -151,13 +151,21 @@ const About = () => {
           </AnimatedSection>
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((value, index) => (
-                <div key={index} className="p-6 border-l-4 border-blue-600 bg-white shadow-sm">
-                  <value.icon className="w-8 h-8 text-blue-600 mb-4" />
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </div>
-              ))}
+              {values.map((value, index) => {
+                const borderColors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
+                const iconColors = ['text-blue-500', 'text-emerald-500', 'text-amber-500', 'text-violet-500'];
+                return (
+                  <div
+                    key={index}
+                    className="p-6 bg-white shadow-sm rounded-lg"
+                    style={{ borderLeft: `4px solid ${borderColors[index]}` }}
+                  >
+                    <value.icon className={`w-8 h-8 ${iconColors[index]} mb-4`} />
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{value.title}</h3>
+                    <p className="text-gray-600">{value.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </AnimatedSection>
         </Container>

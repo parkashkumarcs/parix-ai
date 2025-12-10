@@ -365,7 +365,7 @@ const Home = () => {
       </section>
 
       {/* Services Overview Section */}
-      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
+      <section className="py-20 lg:py-32 overflow-hidden" style={{ backgroundColor: '#fff7ed' }}>
         <Container>
           <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="What We Do" title="Our Core Services" subtitle="Comprehensive solutions to power your digital transformation." />
@@ -421,7 +421,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-20 lg:py-32 bg-white overflow-hidden">
+      <section className="relative py-20 lg:py-32 overflow-hidden" style={{ backgroundColor: '#e0a6f5' }}>
         <Background3D variant="minimal" />
         <Container className="relative z-10">
           <AnimatedSection animation="fadeUp" start="top 85%">

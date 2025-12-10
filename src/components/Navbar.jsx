@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import gsap from 'gsap';
 
 /**
@@ -95,11 +95,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <Sparkles className="w-8 h-8 text-blue-600 group-hover:text-blue-700 transition-colors" />
-            <span className="text-2xl font-bold text-gray-900">
-              Parix<span className="text-blue-600">.ai</span>
-            </span>
+          <Link to="/" className="flex items-center group">
+            <img
+              src="/images/webLogo.png"
+              alt="Parix.ai"
+              className="h-8 sm:h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Navigation */}

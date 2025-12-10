@@ -89,12 +89,17 @@ const Process = () => {
 
             {/* Steps */}
             <div className="space-y-12 lg:space-y-24">
-              {steps.map((step, index) => (
+              {steps.map((step, index) => {
+                const bgColors = ['#eef6ff', '#f0fdf4', '#fefce8', '#fdf4ff', '#fff7ed', '#f0fdfa'];
+                return (
                 <AnimatedSection key={index} animation={index % 2 === 0 ? 'slideLeft' : 'slideRight'} delay={index * 0.1}>
                   <div className={`relative flex flex-col lg:flex-row items-start gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Content */}
                     <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-right' : ''}`}>
-                      <div className={`p-8 bg-white rounded-2xl border border-gray-200 shadow-sm hover:border-blue-300 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}>
+                      <div
+                        className={`p-8 rounded-2xl border border-gray-200 shadow-sm hover:border-blue-300 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}
+                        style={{ backgroundColor: bgColors[index] }}
+                      >
                         <span className="text-5xl font-bold text-blue-600">{step.number}</span>
                         <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-3">{step.title}</h3>
                         <p className="text-gray-600">{step.description}</p>
@@ -110,7 +115,8 @@ const Process = () => {
                     <div className="flex-1 hidden lg:block" />
                   </div>
                 </AnimatedSection>
-              ))}
+              );
+              })}
             </div>
           </div>
         </Container>

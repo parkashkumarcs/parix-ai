@@ -62,10 +62,10 @@ const WorkflowAutomation = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32" style={{ backgroundColor: '#ecfeff' }}>
         <Container>
           <AnimatedSection animation="fadeIn">
-            <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-4">What We Automate</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-center text-cyan-900 mb-4">What We Automate</h2>
             <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">From simple tasks to complex workflows, we build automation that scales with your business.</p>
           </AnimatedSection>
           <AnimatedSection animation="stagger" stagger={0.1}>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -90,11 +90,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="footer-column lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <Sparkles className="w-8 h-8 text-blue-500" />
-              <span className="text-2xl font-bold text-white">
-                Parix<span className="text-blue-500">.ai</span>
-              </span>
+            <Link to="/" className="flex items-center mb-4">
+              <img
+                src="/images/logodark.png"
+                alt="Parix.ai"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
+              />
             </Link>
             <p className="text-gray-400 mb-6 max-w-sm">
               Transform your operations with AI-powered workflow automation and world-class development. Scale effortlessly with one powerful partner.
