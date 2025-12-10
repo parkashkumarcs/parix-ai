@@ -44,11 +44,11 @@ const Careers = () => {
   ];
 
   return (
-    <main className="bg-slate-950 text-white pt-20">
+    <main className="bg-white text-gray-900 pt-20">
       {/* Hero Section */}
       <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
+        <div className="absolute inset-0 bg-blue-50/50" />
         <Container className="relative z-10">
           <div className="careers-hero-content opacity-0">
             <SectionTitle label="Careers" title="Join the Parix.ai Team" subtitle="We are building a future where automation and AI power every business. Join a team that values creativity, engineering excellence, and real impact." />
@@ -57,7 +57,7 @@ const Careers = () => {
       </section>
 
       {/* Why Join Us */}
-      <section className="py-20 lg:py-32 bg-slate-900/50">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle title="Why Join Us?" subtitle="We offer more than just a job — we offer a career you'll love." />
@@ -65,9 +65,9 @@ const Careers = () => {
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {benefits.map((benefit, index) => (
-                <Card key={index} variant="glass" className="p-6">
-                  <div className="w-12 h-12 mb-4 bg-indigo-500/20 rounded-xl flex items-center justify-center">
-                    <benefit.icon className="w-6 h-6 text-indigo-400" />
+                <Card key={index} variant="default" className="p-6">
+                  <div className="w-12 h-12 mb-4 bg-blue-100 rounded-xl flex items-center justify-center">
+                    <benefit.icon className="w-6 h-6 text-blue-600" />
                   </div>
                   <CardTitle className="text-lg">{benefit.title}</CardTitle>
                   <CardDescription>{benefit.description}</CardDescription>
@@ -79,7 +79,7 @@ const Careers = () => {
       </section>
 
       {/* Open Positions */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 lg:py-32 bg-white">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle title="Open Positions" subtitle="Find your next opportunity with us." />
@@ -87,7 +87,7 @@ const Careers = () => {
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="space-y-4">
               {jobs.map((job, index) => (
-                <Card key={index} variant="gradient" className="p-6 hover:border-indigo-500/50 transition-all cursor-pointer">
+                <Card key={index} variant="default" className="p-6 hover:border-blue-300 transition-all cursor-pointer">
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -108,12 +108,13 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
+      <section className="py-20 lg:py-32 bg-blue-600">
         <Container size="sm">
           <AnimatedSection animation="scaleIn">
             <div className="text-center">
-              <SectionTitle title="Don't see the right role?" subtitle="We're always looking for talented people. Send us your resume and let's talk." />
-              <Button to="/contact" size="lg">Get in Touch</Button>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Don't see the right role?</h2>
+              <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">We're always looking for talented people. Send us your resume and let's talk.</p>
+              <Button to="/contact" size="lg" variant="white">Get in Touch</Button>
             </div>
           </AnimatedSection>
         </Container>

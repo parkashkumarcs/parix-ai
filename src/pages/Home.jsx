@@ -125,31 +125,31 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="bg-slate-950 text-white">
+    <main className="bg-white text-gray-900">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden perspective-2000">
         {/* 3D Background Effects */}
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
-        <div className="hero-orb-1 absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-glow-pulse" />
-        <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute inset-0 bg-blue-50/50" />
+        <div className="hero-orb-1 absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl animate-glow-pulse" />
+        <div className="hero-orb-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '2s' }} />
 
         <Container className="relative z-10 py-20">
           <div ref={heroContentRef} className="hero-content-wrapper max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="hero-badge inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 border border-indigo-500/30 mb-8 opacity-0">
-              <Award className="w-4 h-4 text-indigo-400 mr-2" />
-              <span className="text-sm text-indigo-300">Award-winning AI & Development Studio</span>
+            <div className="hero-badge inline-flex items-center px-4 py-2 rounded-full bg-blue-100 border border-blue-200 mb-8 opacity-0">
+              <Award className="w-4 h-4 text-blue-600 mr-2" />
+              <span className="text-sm text-blue-700">Award-winning AI & Development Studio</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="hero-title text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight opacity-0">
+            <h1 className="hero-title text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900 opacity-0">
               Think smarter. Build faster.{' '}
-              <span className="gradient-text">Automate everything.</span>
+              <span className="text-blue-600">Automate everything.</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="hero-subtitle text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto opacity-0">
+            <p className="hero-subtitle text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto opacity-0">
               At Parix.ai, we help businesses break limits by combining AI-powered workflow automation with world-class web & app development. Transform your operations, scale effortlessly, and unlock your competitive edge.
             </p>
 
@@ -170,7 +170,7 @@ const Home = () => {
       </section>
 
       {/* Impact Section */}
-      <section className="py-20 lg:py-32 bg-slate-900/50">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle
@@ -182,9 +182,9 @@ const Home = () => {
 
           <AnimatedSection animation="scaleIn" delay={0.2}>
             <div className="max-w-4xl mx-auto">
-              <div className="text-center p-8 bg-gradient-to-br from-indigo-500/10 to-pink-500/10 rounded-3xl border border-white/10">
-                <div className="text-6xl md:text-8xl font-bold gradient-text mb-4">81+</div>
-                <p className="text-lg text-gray-300 mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
+              <div className="text-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm">
+                <div className="text-6xl md:text-8xl font-bold text-blue-600 mb-4">81+</div>
+                <p className="text-lg text-gray-700 mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
                 <p className="text-gray-500">Our work reduces operational cost, boosts productivity, and enables teams to do more with less.</p>
               </div>
             </div>
@@ -220,16 +220,16 @@ const Home = () => {
       </section>
 
       {/* Why Work With Us Section */}
-      <section className="py-20 lg:py-32 bg-slate-950">
+      <section className="py-20 lg:py-32 bg-white">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="slideLeft">
               <SectionTitle align="left" label="Why Us" title="We build faster, smarter, and stronger digital ecosystems." subtitle="Our team blends engineering, automation, and design expertise to ship reliable, scalable, and future-proof products." />
-              <p className="text-gray-400 mb-6">We help brands accelerate growth with:</p>
+              <p className="text-gray-600 mb-6">We help brands accelerate growth with:</p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                 {features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-300">
-                    <CheckCircle className="w-5 h-5 text-indigo-400 mr-3 flex-shrink-0" />
+                  <li key={index} className="flex items-center text-gray-700">
+                    <CheckCircle className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                     {feature}
                   </li>
                 ))}
@@ -237,10 +237,10 @@ const Home = () => {
               <Button to="/contact" icon={ArrowRight} iconPosition="right">Work With Us</Button>
             </AnimatedSection>
             <AnimatedSection animation="slideRight" delay={0.2}>
-              <div className="aspect-square rounded-3xl bg-gradient-to-br from-indigo-500/20 to-pink-500/20 border border-white/10 p-8 flex items-center justify-center">
+              <div className="aspect-square rounded-3xl bg-blue-50 border border-blue-100 p-8 flex items-center justify-center">
                 <div className="text-center">
-                  <TrendingUp className="w-24 h-24 text-indigo-400 mx-auto mb-4" />
-                  <p className="text-2xl font-bold text-white">Let's build something extraordinary together.</p>
+                  <TrendingUp className="w-24 h-24 text-blue-600 mx-auto mb-4" />
+                  <p className="text-2xl font-bold text-gray-900">Let's build something extraordinary together.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -249,7 +249,7 @@ const Home = () => {
       </section>
 
       {/* Services Overview Section */}
-      <section className="py-20 lg:py-32 bg-slate-900">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="What We Do" title="Our Core Services" subtitle="Comprehensive solutions to power your digital transformation." />
@@ -257,8 +257,8 @@ const Home = () => {
           <AnimatedSection animation="stagger" stagger={0.15}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {services.map((service, index) => (
-                <Card key={index} variant="dark" className="p-8 text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                <Card key={index} variant="default" className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 bg-blue-600 rounded-2xl flex items-center justify-center">
                     <service.icon className="w-8 h-8 text-white" />
                   </div>
                   <CardTitle className="mb-3">{service.title}</CardTitle>
@@ -271,19 +271,19 @@ const Home = () => {
       </section>
 
       {/* Collaboration Section */}
-      <section className="py-20 lg:py-32 bg-slate-950">
+      <section className="py-20 lg:py-32 bg-white">
         <Container>
           <AnimatedSection animation="fadeUp">
             <div className="max-w-4xl mx-auto text-center">
               <SectionTitle title="We collaborate closely with founders, startups, and enterprises." subtitle="Working with Parix.ai means working with real people who care about your product as much as you do." />
-              <p className="text-gray-400 mb-8">We transform ideas into production-ready systems with a mix of creativity, clarity, and engineering excellence.</p>
+              <p className="text-gray-600 mb-8">We transform ideas into production-ready systems with a mix of creativity, clarity, and engineering excellence.</p>
             </div>
           </AnimatedSection>
         </Container>
       </section>
 
       {/* Team Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-slate-900 to-slate-950">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="Our Team" title="Meet the team behind your next big leap." subtitle="A passionate group of developers, designers, and AI engineers dedicated to building systems that scale." />
@@ -292,12 +292,11 @@ const Home = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
                 <div key={index} className="text-center group">
-                  <div className="relative mb-4 overflow-hidden rounded-2xl aspect-square">
+                  <div className="relative mb-4 overflow-hidden rounded-2xl aspect-square shadow-md">
                     <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
                   </div>
-                  <h3 className="font-semibold text-white">{member.name}</h3>
-                  <p className="text-sm text-gray-400">{member.role}</p>
+                  <h3 className="font-semibold text-gray-900">{member.name}</h3>
+                  <p className="text-sm text-gray-500">{member.role}</p>
                 </div>
               ))}
             </div>
@@ -306,7 +305,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative py-20 lg:py-32 bg-slate-950 overflow-hidden">
+      <section className="relative py-20 lg:py-32 bg-white overflow-hidden">
         <Background3D variant="minimal" />
         <Container className="relative z-10">
           <AnimatedSection animation="fadeUp">
@@ -321,7 +320,7 @@ const Home = () => {
       </section>
 
       {/* Blog Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-pink-500/10 to-indigo-500/10">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="fadeUp">
             <SectionTitle label="Insights" title="Insights that move businesses forward." subtitle="We share strategies, tutorials, and automation frameworks to help you scale faster and smarter." />
@@ -329,7 +328,7 @@ const Home = () => {
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {blogPosts.map((post, index) => (
-                <Card key={index} to="/blog" variant="glass" className="group overflow-hidden">
+                <Card key={index} to="/blog" variant="default" className="group overflow-hidden">
                   <div className="aspect-video overflow-hidden">
                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
@@ -345,14 +344,15 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 lg:py-32 bg-slate-900">
+      <section className="py-20 lg:py-32 bg-blue-600">
         <Container size="sm">
           <AnimatedSection animation="fadeUp">
             <div className="text-center">
-              <SectionTitle title="Stay updated. Stay ahead." subtitle="Join our newsletter to receive automation tips, product updates, and business insights." />
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Stay updated. Stay ahead.</h2>
+              <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">Join our newsletter to receive automation tips, product updates, and business insights.</p>
               <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input type="email" placeholder="Enter your email" className="flex-1 px-6 py-4 bg-slate-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                <Button type="submit">Subscribe</Button>
+                <input type="email" placeholder="Enter your email" className="flex-1 px-6 py-4 bg-white border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                <button type="submit" className="px-6 py-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors">Subscribe</button>
               </form>
             </div>
           </AnimatedSection>

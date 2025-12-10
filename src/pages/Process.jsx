@@ -64,11 +64,11 @@ const Process = () => {
   ];
 
   return (
-    <main className="bg-slate-950 text-white pt-20">
+    <main className="bg-white text-gray-900 pt-20">
       {/* Hero Section */}
       <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
+        <div className="absolute inset-0 bg-blue-50/50" />
         <Container className="relative z-10">
           <div className="process-hero-content opacity-0">
             <SectionTitle
@@ -81,11 +81,11 @@ const Process = () => {
       </section>
 
       {/* Process Steps */}
-      <section className="py-20 lg:py-32 bg-slate-900/50">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <div className="relative">
             {/* Vertical Line */}
-            <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-indigo-500 via-pink-500 to-indigo-500 hidden md:block" />
+            <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-blue-600 hidden md:block" />
 
             {/* Steps */}
             <div className="space-y-12 lg:space-y-24">
@@ -94,15 +94,15 @@ const Process = () => {
                   <div className={`relative flex flex-col lg:flex-row items-start gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Content */}
                     <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-right' : ''}`}>
-                      <div className={`p-8 bg-slate-800/50 rounded-2xl border border-white/10 hover:border-indigo-500/30 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}>
-                        <span className="text-5xl font-bold gradient-text">{step.number}</span>
-                        <h3 className="text-2xl font-bold text-white mt-4 mb-3">{step.title}</h3>
-                        <p className="text-gray-400">{step.description}</p>
+                      <div className={`p-8 bg-white rounded-2xl border border-gray-200 shadow-sm hover:border-blue-300 transition-all ${index % 2 === 1 ? 'lg:ml-auto' : ''} max-w-xl`}>
+                        <span className="text-5xl font-bold text-blue-600">{step.number}</span>
+                        <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-3">{step.title}</h3>
+                        <p className="text-gray-600">{step.description}</p>
                       </div>
                     </div>
 
                     {/* Icon - Center */}
-                    <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-16 h-16 bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center z-10 hidden md:flex">
+                    <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center z-10 hidden md:flex">
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
 
@@ -117,12 +117,13 @@ const Process = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
+      <section className="py-20 lg:py-32 bg-blue-600">
         <Container size="sm">
           <AnimatedSection animation="scaleIn">
             <div className="text-center">
-              <SectionTitle title="Ready to start your project?" subtitle="Let's work together to bring your vision to life." />
-              <Button to="/contact" size="lg">Get Started Today</Button>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Ready to start your project?</h2>
+              <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">Let's work together to bring your vision to life.</p>
+              <Button to="/contact" size="lg" variant="white">Get Started Today</Button>
             </div>
           </AnimatedSection>
         </Container>

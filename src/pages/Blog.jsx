@@ -91,11 +91,11 @@ const Blog = () => {
   ];
 
   return (
-    <main className="bg-slate-950 text-white pt-20">
+    <main className="bg-white text-gray-900 pt-20">
       {/* Hero Section */}
       <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-indigo-500/10" />
+        <div className="absolute inset-0 bg-blue-50/50" />
         <Container className="relative z-10">
           <div className="blog-hero-content opacity-0">
             <SectionTitle label="Blog" title="Insights, Strategies & Automation Playbooks" subtitle="Explore deep guides, real-world examples, and tutorials on AI, web development, workflow automation, and digital growth." />
@@ -104,11 +104,11 @@ const Blog = () => {
       </section>
 
       {/* Categories */}
-      <section className="py-8 bg-slate-900/50 sticky top-16 z-30 backdrop-blur-lg">
+      <section className="py-8 bg-white/95 sticky top-16 z-30 backdrop-blur-lg border-b border-gray-200">
         <Container>
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category, index) => (
-              <button key={index} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${index === 0 ? 'bg-indigo-500 text-white' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}>
+              <button key={index} className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${index === 0 ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'}`}>
                 {category}
               </button>
             ))}
@@ -117,21 +117,21 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
-                <Card key={index} variant="gradient" className="group overflow-hidden cursor-pointer">
+                <Card key={index} variant="default" className="group overflow-hidden cursor-pointer">
                   <div className="aspect-video overflow-hidden">
                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   </div>
                   <CardContent>
                     <div className="flex items-center gap-4 mb-3">
                       <CardBadge>{post.category}</CardBadge>
-                      {post.featured && <span className="text-xs text-pink-400 font-semibold">Featured</span>}
+                      {post.featured && <span className="text-xs text-blue-600 font-semibold">Featured</span>}
                     </div>
-                    <CardTitle className="group-hover:text-indigo-400 transition-colors">{post.title}</CardTitle>
+                    <CardTitle className="group-hover:text-blue-600 transition-colors">{post.title}</CardTitle>
                     <CardDescription className="mb-4">{post.excerpt}</CardDescription>
                     <div className="flex items-center justify-between text-sm text-gray-500">
                       <div className="flex items-center"><User className="w-4 h-4 mr-1" />{post.author}</div>

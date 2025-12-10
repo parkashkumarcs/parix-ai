@@ -14,21 +14,21 @@ const Testimonial = ({
   className = '',
 }) => {
   return (
-    <div className={`p-8 bg-slate-800/50 border border-white/10 rounded-2xl ${className}`}>
+    <div className={`p-8 bg-white border border-gray-200 rounded-2xl shadow-sm ${className}`}>
       {/* Rating Stars */}
       <div className="flex space-x-1 mb-4">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
             className={`w-5 h-5 ${
-              i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'
+              i < rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'
             }`}
           />
         ))}
       </div>
 
       {/* Quote */}
-      <blockquote className="text-lg text-gray-300 mb-6 leading-relaxed">
+      <blockquote className="text-lg text-gray-700 mb-6 leading-relaxed">
         "{quote}"
       </blockquote>
 
@@ -42,8 +42,8 @@ const Testimonial = ({
           />
         )}
         <div>
-          <p className="font-semibold text-white">{author}</p>
-          <p className="text-sm text-gray-400">
+          <p className="font-semibold text-gray-900">{author}</p>
+          <p className="text-sm text-gray-500">
             {role}
             {company && `, ${company}`}
           </p>

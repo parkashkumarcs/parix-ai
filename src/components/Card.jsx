@@ -17,18 +17,18 @@ const Card = ({
   // Base styles
   const baseStyles = 'rounded-2xl overflow-hidden';
 
-  // Variant styles
+  // Variant styles - Light Theme
   const variants = {
-    default: 'bg-slate-800/50 border border-white/10',
-    glass: 'bg-white/5 backdrop-blur-lg border border-white/10',
-    solid: 'bg-slate-800',
-    gradient: 'bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10',
-    dark: 'bg-slate-900 border border-white/10',
+    default: 'bg-white border border-gray-200 shadow-sm',
+    glass: 'bg-white/80 backdrop-blur-lg border border-gray-200',
+    solid: 'bg-gray-50',
+    gradient: 'bg-white border border-gray-200',
+    dark: 'bg-gray-50 border border-gray-200',
   };
 
-  // Hover styles
+  // Hover styles - Light Theme
   const hoverStyles = hoverable
-    ? 'transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-500/30'
+    ? 'transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-300'
     : '';
 
   // Combine all styles
@@ -93,21 +93,21 @@ export const CardContent = ({ children, className = '' }) => (
  * CardTitle - Title for Card
  */
 export const CardTitle = ({ children, className = '' }) => (
-  <h3 className={`text-xl font-bold text-white mb-2 ${className}`}>{children}</h3>
+  <h3 className={`text-xl font-bold text-gray-900 mb-2 ${className}`}>{children}</h3>
 );
 
 /**
  * CardDescription - Description for Card
  */
 export const CardDescription = ({ children, className = '' }) => (
-  <p className={`text-gray-400 ${className}`}>{children}</p>
+  <p className={`text-gray-600 ${className}`}>{children}</p>
 );
 
 /**
  * CardBadge - Badge for Card
  */
 export const CardBadge = ({ children, className = '' }) => (
-  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/20 text-indigo-400 ${className}`}>
+  <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700 ${className}`}>
     {children}
   </span>
 );

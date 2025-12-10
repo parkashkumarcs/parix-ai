@@ -78,11 +78,11 @@ const Pricing = () => {
   ];
 
   return (
-    <main className="bg-slate-950 text-white pt-20">
+    <main className="bg-white text-gray-900 pt-20">
       {/* Hero Section */}
       <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
+        <div className="absolute inset-0 bg-blue-50/50" />
         <Container className="relative z-10">
           <div className="pricing-hero-content opacity-0">
             <SectionTitle
@@ -95,7 +95,7 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 lg:py-32 bg-slate-900/50">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <AnimatedSection animation="stagger" stagger={0.15}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
@@ -104,14 +104,14 @@ const Pricing = () => {
                   key={index}
                   className={`rounded-2xl ${
                     plan.popular
-                      ? 'bg-gradient-to-br from-slate-800 to-slate-900 border-2 border-indigo-500 shadow-xl shadow-indigo-500/20 md:scale-105'
-                      : 'bg-slate-800/50 border border-white/10'
+                      ? 'bg-white border-2 border-blue-600 shadow-xl md:scale-105'
+                      : 'bg-white border border-gray-200 shadow-sm'
                   }`}
                 >
                   {/* Badge Area - Always reserve space */}
                   <div className="h-8 flex items-end justify-center">
                     {plan.popular && (
-                      <div className="px-4 py-1.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full text-sm font-semibold whitespace-nowrap translate-y-1/2">
+                      <div className="px-4 py-1.5 bg-blue-600 text-white rounded-full text-sm font-semibold whitespace-nowrap translate-y-1/2">
                         Most Popular
                       </div>
                     )}
@@ -120,18 +120,18 @@ const Pricing = () => {
                   {/* Card Content */}
                   <div className="p-8 pt-4">
                     <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                      <p className="text-gray-400 mb-4">{plan.description}</p>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                      <p className="text-gray-500 mb-4">{plan.description}</p>
                       <div className="flex items-baseline justify-center">
-                        <span className="text-5xl font-bold gradient-text">{plan.price}</span>
-                        <span className="text-gray-400 ml-1">{plan.period}</span>
+                        <span className="text-5xl font-bold text-blue-600">{plan.price}</span>
+                        <span className="text-gray-500 ml-1">{plan.period}</span>
                       </div>
                     </div>
 
                     <ul className="space-y-4 mb-8">
                       {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-gray-300">
-                          <Check className="w-5 h-5 text-indigo-400 mr-3 flex-shrink-0" />
+                        <li key={i} className="flex items-center text-gray-700">
+                          <Check className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -149,7 +149,7 @@ const Pricing = () => {
       </section>
 
       {/* FAQ or Additional Info */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 lg:py-32 bg-white">
         <Container size="sm">
           <AnimatedSection animation="fadeUp">
             <div className="text-center">

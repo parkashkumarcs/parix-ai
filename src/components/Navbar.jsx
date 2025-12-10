@@ -62,7 +62,7 @@ const Navbar = () => {
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg'
+          ? 'bg-white/95 backdrop-blur-md shadow-md'
           : 'bg-transparent'
       }`}
     >
@@ -70,9 +70,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <Sparkles className="w-8 h-8 text-indigo-500 group-hover:text-pink-500 transition-colors" />
-            <span className="text-2xl font-bold text-white">
-              Parix<span className="text-indigo-500">.ai</span>
+            <Sparkles className="w-8 h-8 text-blue-600 group-hover:text-blue-700 transition-colors" />
+            <span className="text-2xl font-bold text-gray-900">
+              Parix<span className="text-blue-600">.ai</span>
             </span>
           </Link>
 
@@ -84,8 +84,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   location.pathname === link.path
-                    ? 'text-indigo-400 bg-indigo-500/10'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
                 {link.name}
@@ -97,7 +97,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/contact"
-              className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-pink-500 text-white font-semibold rounded-lg hover:from-indigo-600 hover:to-pink-600 transition-all duration-200 shadow-lg hover:shadow-indigo-500/25"
+              className="px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Get Started
             </Link>
@@ -106,7 +106,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-gray-300 hover:text-white transition-colors"
+            className="lg:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -120,15 +120,15 @@ const Navbar = () => {
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-slate-900/95 backdrop-blur-md px-4 py-4 space-y-2 border-t border-white/10">
+        <div className="bg-white/95 backdrop-blur-md px-4 py-4 space-y-2 border-t border-gray-200">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
               className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
                 location.pathname === link.path
-                  ? 'text-indigo-400 bg-indigo-500/10'
-                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  ? 'text-blue-600 bg-blue-50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
               }`}
             >
               {link.name}
@@ -136,7 +136,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="block px-4 py-3 mt-4 text-center bg-gradient-to-r from-indigo-500 to-pink-500 text-white font-semibold rounded-lg"
+            className="block px-4 py-3 mt-4 text-center bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
           >
             Get Started
           </Link>

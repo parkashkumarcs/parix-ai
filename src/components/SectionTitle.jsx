@@ -23,7 +23,7 @@ const SectionTitle = ({
     <div className={`mb-12 lg:mb-16 ${alignStyles[align]} ${className}`}>
       {/* Label */}
       {label && (
-        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+        <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold rounded-full bg-blue-100 text-blue-700 border border-blue-200">
           {label}
         </span>
       )}
@@ -31,7 +31,7 @@ const SectionTitle = ({
       {/* Title */}
       <h2
         className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${
-          gradient ? 'gradient-text' : 'text-white'
+          gradient ? 'text-blue-600' : 'text-gray-900'
         } ${titleClassName}`}
       >
         {title}
@@ -39,7 +39,7 @@ const SectionTitle = ({
 
       {/* Subtitle */}
       {subtitle && (
-        <p className={`text-lg md:text-xl text-gray-400 max-w-3xl ${align === 'center' ? 'mx-auto' : ''} ${subtitleClassName}`}>
+        <p className={`text-lg md:text-xl text-gray-600 max-w-3xl ${align === 'center' ? 'mx-auto' : ''} ${subtitleClassName}`}>
           {subtitle}
         </p>
       )}

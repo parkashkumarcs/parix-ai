@@ -85,26 +85,26 @@ const Footer = () => {
   ];
 
   return (
-    <footer ref={footerRef} className="bg-slate-900 border-t border-white/10">
+    <footer ref={footerRef} className="bg-gray-900 border-t border-gray-800">
       <div className="footer-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="footer-column lg:col-span-2">
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <Sparkles className="w-8 h-8 text-indigo-500" />
+              <Sparkles className="w-8 h-8 text-blue-500" />
               <span className="text-2xl font-bold text-white">
-                Parix<span className="text-indigo-500">.ai</span>
+                Parix<span className="text-blue-500">.ai</span>
               </span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-sm">
               Transform your operations with AI-powered workflow automation and world-class development. Scale effortlessly with one powerful partner.
             </p>
             <div className="space-y-3">
-              <a href="mailto:hello@parix.ai" className="flex items-center text-gray-400 hover:text-indigo-400 transition-colors">
+              <a href="mailto:hello@parix.ai" className="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
                 <Mail className="w-5 h-5 mr-3" />
                 hello@parix.ai
               </a>
-              <a href="tel:+1234567890" className="flex items-center text-gray-400 hover:text-indigo-400 transition-colors">
+              <a href="tel:+1234567890" className="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
                 <Phone className="w-5 h-5 mr-3" />
                 +1 (xxx) xxx-xxxx
               </a>
@@ -121,7 +121,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-gray-400 hover:text-indigo-400 transition-colors">
+                  <Link to={link.path} className="text-gray-400 hover:text-blue-400 transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -135,7 +135,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {services.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-gray-400 hover:text-indigo-400 transition-colors">
+                  <Link to={link.path} className="text-gray-400 hover:text-blue-400 transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -149,7 +149,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {resources.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-gray-400 hover:text-indigo-400 transition-colors">
+                  <Link to={link.path} className="text-gray-400 hover:text-blue-400 transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -159,7 +159,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             © {currentYear} Parix.ai. All rights reserved.
           </p>
@@ -170,7 +170,7 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 bg-white/5 rounded-lg text-gray-400 hover:text-indigo-400 hover:bg-white/10 transition-all"
+                className="p-2 bg-gray-800 rounded-lg text-gray-400 hover:text-blue-400 hover:bg-gray-700 transition-all"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />

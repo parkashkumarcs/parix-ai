@@ -18,16 +18,17 @@ const Button = ({
   iconPosition = 'left',
   ...props
 }) => {
-  // Base styles
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900';
+  // Base styles - Light Theme
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white';
 
-  // Variant styles
+  // Variant styles - Professional Light Theme
   const variants = {
-    primary: 'bg-gradient-to-r from-indigo-500 to-pink-500 text-white hover:from-indigo-600 hover:to-pink-600 shadow-lg hover:shadow-indigo-500/25 focus:ring-indigo-500',
-    secondary: 'bg-white/10 text-white border border-white/20 hover:bg-white/20 focus:ring-white',
-    outline: 'border-2 border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white focus:ring-indigo-500',
-    ghost: 'text-gray-300 hover:text-white hover:bg-white/10 focus:ring-white',
-    dark: 'bg-slate-800 text-white hover:bg-slate-700 focus:ring-slate-500',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg focus:ring-blue-500',
+    secondary: 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200 focus:ring-gray-400',
+    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500',
+    ghost: 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-400',
+    dark: 'bg-gray-800 text-white hover:bg-gray-900 focus:ring-gray-600',
+    white: 'bg-white text-blue-600 hover:bg-gray-100 shadow-md hover:shadow-lg focus:ring-blue-500',
   };
 
   // Size styles

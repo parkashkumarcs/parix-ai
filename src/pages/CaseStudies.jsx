@@ -80,11 +80,11 @@ const CaseStudies = () => {
   ];
 
   return (
-    <main className="bg-slate-950 text-white pt-20">
+    <main className="bg-white text-gray-900 pt-20">
       {/* Hero Section */}
       <section ref={heroRef} className="py-20 lg:py-32 relative overflow-hidden perspective-2000">
         <Background3D variant="hero" />
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10" />
+        <div className="absolute inset-0 bg-blue-50/50" />
         <Container className="relative z-10">
           <div className="casestudies-hero-content opacity-0">
             <SectionTitle label="Case Studies" title="Our Work. Real Results." subtitle="We build digital products that transform operations and drive measurable impact." />
@@ -93,7 +93,7 @@ const CaseStudies = () => {
       </section>
 
       {/* Case Studies Grid */}
-      <section className="py-20 lg:py-32 bg-slate-900/50">
+      <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
           <div className="space-y-20">
             {caseStudies.map((study, index) => (
@@ -101,7 +101,7 @@ const CaseStudies = () => {
                 <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image */}
                   <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <div className="aspect-video rounded-2xl overflow-hidden">
+                    <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
                       <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
                     </div>
                   </div>
@@ -109,21 +109,21 @@ const CaseStudies = () => {
                   {/* Content */}
                   <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
                     <CardBadge className="mb-4">{study.category}</CardBadge>
-                    <h2 className="text-3xl font-bold text-white mb-4">{study.title}</h2>
-                    <p className="text-gray-400 mb-6">{study.description}</p>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">{study.title}</h2>
+                    <p className="text-gray-600 mb-6">{study.description}</p>
 
                     <div className="space-y-4 mb-6">
-                      <div><span className="text-indigo-400 font-semibold">Challenge:</span> <span className="text-gray-400">{study.challenge}</span></div>
-                      <div><span className="text-pink-400 font-semibold">Solution:</span> <span className="text-gray-400">{study.solution}</span></div>
+                      <div><span className="text-blue-600 font-semibold">Challenge:</span> <span className="text-gray-600">{study.challenge}</span></div>
+                      <div><span className="text-cyan-600 font-semibold">Solution:</span> <span className="text-gray-600">{study.solution}</span></div>
                     </div>
 
                     {/* Results */}
                     <div className="grid grid-cols-3 gap-4">
                       {study.results.map((result, i) => (
-                        <div key={i} className="text-center p-4 bg-slate-800/50 rounded-xl">
-                          <result.icon className="w-6 h-6 text-indigo-400 mx-auto mb-2" />
-                          <div className="text-2xl font-bold gradient-text">{result.value}</div>
-                          <div className="text-xs text-gray-400">{result.label}</div>
+                        <div key={i} className="text-center p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                          <result.icon className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                          <div className="text-2xl font-bold text-blue-600">{result.value}</div>
+                          <div className="text-xs text-gray-500">{result.label}</div>
                         </div>
                       ))}
                     </div>
@@ -136,12 +136,16 @@ const CaseStudies = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
+      <section className="py-20 lg:py-32 bg-blue-600">
         <Container size="sm">
           <AnimatedSection animation="scaleIn">
             <div className="text-center">
-              <SectionTitle title="Ready to be our next success story?" subtitle="Let's discuss how we can help transform your business." />
-              <Button to="/contact" size="lg" icon={ArrowRight} iconPosition="right">Start Your Project</Button>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Ready to be our next success story?</h2>
+              <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">Let's discuss how we can help transform your business.</p>
+              <button onClick={() => window.location.href='/contact'} className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-md">
+                Start Your Project
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </button>
             </div>
           </AnimatedSection>
         </Container>
