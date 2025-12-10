@@ -97,7 +97,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/images/webLogo.png"
+              src={`${import.meta.env.BASE_URL}images/webLogo.png`}
               alt="Parix.ai"
               className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform group-hover:scale-105"
             />

@@ -3,6 +3,9 @@ import { Rocket, CheckCircle, ArrowRight, LayoutDashboard, CreditCard, Cloud, Sh
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * SaaS Product Development Service Page
  */
@@ -20,12 +23,12 @@ const SaaSDevelopment = () => {
   }, []);
 
   const features = [
-    { icon: LayoutDashboard, title: 'Dashboard Systems', description: 'Powerful admin panels and user dashboards with analytics.', image: '/images/Custom UI dashboards (1).png' },
-    { icon: CreditCard, title: 'Subscription & Billing', description: 'Stripe integration, usage-based billing, and invoicing.', image: '/images/Sales (1).png' },
-    { icon: Cloud, title: 'Cloud Infrastructure', description: 'Scalable cloud architecture that grows with your users.', image: '/images/data_sync (1).png' },
-    { icon: Shield, title: 'Security & Auth', description: 'Enterprise-grade security with SSO and role-based access.', image: '/images/Internal Approval (1).png' },
-    { icon: GitBranch, title: 'API Development', description: 'RESTful and GraphQL APIs for integrations and extensibility.', image: '/images/Web Development (1).png' },
-    { icon: Zap, title: 'AI Modules', description: 'Embedded AI features to supercharge your product.', image: '/images/WorkflowAutomation (1).png' },
+    { icon: LayoutDashboard, title: 'Dashboard Systems', description: 'Powerful admin panels and user dashboards with analytics.', image: getImg('/images/Custom UI dashboards (1).png') },
+    { icon: CreditCard, title: 'Subscription & Billing', description: 'Stripe integration, usage-based billing, and invoicing.', image: getImg('/images/Sales (1).png') },
+    { icon: Cloud, title: 'Cloud Infrastructure', description: 'Scalable cloud architecture that grows with your users.', image: getImg('/images/data_sync (1).png') },
+    { icon: Shield, title: 'Security & Auth', description: 'Enterprise-grade security with SSO and role-based access.', image: getImg('/images/Internal Approval (1).png') },
+    { icon: GitBranch, title: 'API Development', description: 'RESTful and GraphQL APIs for integrations and extensibility.', image: getImg('/images/Web Development (1).png') },
+    { icon: Zap, title: 'AI Modules', description: 'Embedded AI features to supercharge your product.', image: getImg('/images/WorkflowAutomation (1).png') },
   ];
 
   const benefits = [

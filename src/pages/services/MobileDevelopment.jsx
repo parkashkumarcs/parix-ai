@@ -3,6 +3,9 @@ import { Smartphone, CheckCircle, ArrowRight, ShoppingBag, Activity, MapPin, Use
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Mobile App Development Service Page
  */
@@ -20,12 +23,12 @@ const MobileDevelopment = () => {
   }, []);
 
   const features = [
-    { icon: ShoppingBag, title: 'E-commerce Apps', description: 'Mobile shopping experiences that drive sales and customer loyalty.', image: '/images/Ecomerceweb (1).png' },
-    { icon: Activity, title: 'Health & Fitness', description: 'Wellness apps with tracking, analytics, and personalization.', image: '/images/mobileappbann.png' },
-    { icon: MapPin, title: 'Marketplace Apps', description: 'Multi-vendor platforms connecting buyers and sellers.', image: '/images/Portal (1).png' },
-    { icon: Users, title: 'CRM Mobile Dashboards', description: 'Business tools accessible from anywhere, anytime.', image: '/images/Custom UI dashboards (1).png' },
-    { icon: Bell, title: 'Push Notifications', description: 'Engage users with smart, personalized notifications.', image: '/images/MobileAppBanner (1).png' },
-    { icon: Fingerprint, title: 'Secure Authentication', description: 'Biometric and multi-factor authentication for security.', image: '/images/Landing page (2).png' },
+    { icon: ShoppingBag, title: 'E-commerce Apps', description: 'Mobile shopping experiences that drive sales and customer loyalty.', image: getImg('/images/Ecomerceweb (1).png') },
+    { icon: Activity, title: 'Health & Fitness', description: 'Wellness apps with tracking, analytics, and personalization.', image: getImg('/images/mobileappbann.png') },
+    { icon: MapPin, title: 'Marketplace Apps', description: 'Multi-vendor platforms connecting buyers and sellers.', image: getImg('/images/Portal (1).png') },
+    { icon: Users, title: 'CRM Mobile Dashboards', description: 'Business tools accessible from anywhere, anytime.', image: getImg('/images/Custom UI dashboards (1).png') },
+    { icon: Bell, title: 'Push Notifications', description: 'Engage users with smart, personalized notifications.', image: getImg('/images/MobileAppBanner (1).png') },
+    { icon: Fingerprint, title: 'Secure Authentication', description: 'Biometric and multi-factor authentication for security.', image: getImg('/images/Landing page (2).png') },
   ];
 
   const benefits = [

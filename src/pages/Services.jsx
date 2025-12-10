@@ -6,6 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Services Page Component
  * Comprehensive list of all services offered
@@ -35,7 +38,7 @@ const Services = () => {
       features: ['Lead & customer workflows', 'Project/task management', 'Marketing & email flows', 'Sales funnels', 'Internal approvals', 'Data syncing & reporting', 'Repetitive manual tasks'],
       tools: ['AI Agents', 'Zapier / Make', 'Custom Integrations', 'Webhooks', 'Python automation', 'Workflow engines'],
       outcome: 'Higher efficiency, fewer errors, faster scaling.',
-      image: '/images/WorkflowAutomation (1).png',
+      image: getImg('/images/WorkflowAutomation (1).png'),
       link: '/services/workflow-automation',
     },
     {
@@ -47,7 +50,7 @@ const Services = () => {
       features: ['Business websites', 'Marketing sites', 'Landing pages', 'Corporate portals', 'Custom UI dashboards', 'Ecommerce platforms'],
       tools: ['React', 'Next.js', 'WordPress', 'Laravel', 'Node.js', 'Django', 'Tailwind'],
       outcome: 'Beautiful websites built for speed, SEO, and growth.',
-      image: '/images/Web Development (1).png',
+      image: getImg('/images/Web Development (1).png'),
       link: '/services/web-development',
     },
     {
@@ -59,7 +62,7 @@ const Services = () => {
       features: ['E-commerce apps', 'SaaS mobile apps', 'Fitness/health apps', 'Marketplace apps', 'CRM/ERP mobile dashboards', 'Custom business tools'],
       tools: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'AWS'],
       outcome: 'Apps that users love. Smooth, scalable, and feature-rich.',
-      image: '/images/MobileAppBanner (1).png',
+      image: getImg('/images/MobileAppBanner (1).png'),
       link: '/services/mobile-development',
     },
     {
@@ -71,7 +74,7 @@ const Services = () => {
       features: ['AI chatbots & assistants', 'Data extraction/processing', 'Content generation systems', 'Predictive analytics', 'Custom GPT/LLM integrations', 'AI agents for workflows', 'Computer vision models'],
       tools: ['OpenAI', 'LangChain', 'TensorFlow', 'PyTorch', 'Hugging Face', 'Custom LLMs'],
       outcome: 'Smarter operations, reduced workload, higher productivity.',
-      image: '/images/Gemini_Generated_Image_tqurtetqurtetqur.png',
+      image: getImg('/images/Gemini_Generated_Image_tqurtetqurtetqur.png'),
       link: '/services/ai-integrations',
     },
     {
@@ -83,7 +86,7 @@ const Services = () => {
       features: ['Product strategy', 'UX/UI design', 'Full-stack development', 'Dashboard systems', 'Subscription & billing', 'AI modules', 'Launch & scaling'],
       tools: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS', 'Docker', 'Kubernetes'],
       outcome: 'Production-ready SaaS built to scale globally.',
-      image: '/images/Portal (1).png',
+      image: getImg('/images/Portal (1).png'),
       link: '/services/saas-development',
     },
     {
@@ -95,7 +98,7 @@ const Services = () => {
       features: ['Brand identity', 'Logo systems', 'UI/UX for apps', 'Design systems', 'Marketing assets', 'Product visuals'],
       tools: ['Figma', 'Adobe Creative Suite', 'Framer', 'Webflow', 'After Effects'],
       outcome: 'A unified brand presence that stands out and converts.',
-      image: '/images/Landing page (1).png',
+      image: getImg('/images/Landing page (1).png'),
       link: '/services/branding-design',
     },
   ];

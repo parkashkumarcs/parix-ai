@@ -3,6 +3,9 @@ import { Brain, CheckCircle, ArrowRight, MessageSquare, FileText, LineChart, Bot
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * AI Integrations Service Page
  */
@@ -20,12 +23,12 @@ const AIIntegrations = () => {
   }, []);
 
   const features = [
-    { icon: MessageSquare, title: 'AI Chatbots & Assistants', description: 'Intelligent conversational AI for customer support and engagement.', image: '/images/Gemini_Generated_Image_tqurtetqurtetqur.png' },
-    { icon: FileText, title: 'Content Generation', description: 'Automated content creation for marketing, docs, and more.', image: '/images/Marketing (1).png' },
-    { icon: LineChart, title: 'Predictive Analytics', description: 'Data-driven insights to forecast trends and optimize decisions.', image: '/images/Sales (1).png' },
-    { icon: Bot, title: 'AI Workflow Agents', description: 'Autonomous agents that handle complex business processes.', image: '/images/WorkflowAutomation (1).png' },
-    { icon: Eye, title: 'Computer Vision', description: 'Image recognition, OCR, and visual data processing.', image: '/images/data_sync (1).png' },
-    { icon: Cpu, title: 'Custom LLM Integration', description: 'Tailored GPT and language model implementations.', image: '/images/repeatetivtask (1).png' },
+    { icon: MessageSquare, title: 'AI Chatbots & Assistants', description: 'Intelligent conversational AI for customer support and engagement.', image: getImg('/images/Gemini_Generated_Image_tqurtetqurtetqur.png') },
+    { icon: FileText, title: 'Content Generation', description: 'Automated content creation for marketing, docs, and more.', image: getImg('/images/Marketing (1).png') },
+    { icon: LineChart, title: 'Predictive Analytics', description: 'Data-driven insights to forecast trends and optimize decisions.', image: getImg('/images/Sales (1).png') },
+    { icon: Bot, title: 'AI Workflow Agents', description: 'Autonomous agents that handle complex business processes.', image: getImg('/images/WorkflowAutomation (1).png') },
+    { icon: Eye, title: 'Computer Vision', description: 'Image recognition, OCR, and visual data processing.', image: getImg('/images/data_sync (1).png') },
+    { icon: Cpu, title: 'Custom LLM Integration', description: 'Tailored GPT and language model implementations.', image: getImg('/images/repeatetivtask (1).png') },
   ];
 
   const benefits = [

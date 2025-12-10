@@ -3,6 +3,9 @@ import { Globe, CheckCircle, ArrowRight, Layout, ShoppingCart, Monitor, Gauge, S
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Web Development Service Page
  */
@@ -20,12 +23,12 @@ const WebDevelopment = () => {
   }, []);
 
   const features = [
-    { icon: Layout, title: 'Business Websites', description: 'Professional websites that establish credibility and drive conversions.', image: '/images/Business Web (1).png' },
-    { icon: Monitor, title: 'Marketing Sites', description: 'High-converting landing pages and marketing websites.', image: '/images/Marketing Web solution (1).png' },
-    { icon: ShoppingCart, title: 'Ecommerce Platforms', description: 'Full-featured online stores with payment integration.', image: '/images/Ecomerceweb (1).png' },
-    { icon: Gauge, title: 'Custom Dashboards', description: 'Interactive dashboards for data visualization and management.', image: '/images/Custom UI dashboards (1).png' },
-    { icon: Search, title: 'SEO Optimization', description: 'Built-in SEO best practices for maximum visibility.', image: '/images/Landing page (1).png' },
-    { icon: Code, title: 'Custom Development', description: 'Tailored solutions for unique business requirements.', image: '/images/Web Development (1).png' },
+    { icon: Layout, title: 'Business Websites', description: 'Professional websites that establish credibility and drive conversions.', image: getImg('/images/Business Web (1).png') },
+    { icon: Monitor, title: 'Marketing Sites', description: 'High-converting landing pages and marketing websites.', image: getImg('/images/Marketing Web solution (1).png') },
+    { icon: ShoppingCart, title: 'Ecommerce Platforms', description: 'Full-featured online stores with payment integration.', image: getImg('/images/Ecomerceweb (1).png') },
+    { icon: Gauge, title: 'Custom Dashboards', description: 'Interactive dashboards for data visualization and management.', image: getImg('/images/Custom UI dashboards (1).png') },
+    { icon: Search, title: 'SEO Optimization', description: 'Built-in SEO best practices for maximum visibility.', image: getImg('/images/Landing page (1).png') },
+    { icon: Code, title: 'Custom Development', description: 'Tailored solutions for unique business requirements.', image: getImg('/images/Web Development (1).png') },
   ];
 
   const benefits = [

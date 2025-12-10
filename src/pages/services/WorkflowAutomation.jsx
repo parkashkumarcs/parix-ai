@@ -3,6 +3,9 @@ import { Zap, CheckCircle, ArrowRight, Clock, TrendingUp, Users, Cog, Mail, Data
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Workflow Automation Service Page
  */
@@ -20,12 +23,12 @@ const WorkflowAutomation = () => {
   }, []);
 
   const features = [
-    { icon: Cog, title: 'Lead & Customer Workflows', description: 'Automate lead capture, nurturing, and customer onboarding processes.', image: '/images/Lead & Workflow (1).png' },
-    { icon: Clock, title: 'Task Management', description: 'Streamline project and task assignments with intelligent automation.', image: '/images/Project_Tasks (1).png' },
-    { icon: Mail, title: 'Email & Marketing Flows', description: 'Create automated email sequences and marketing campaigns.', image: '/images/Marketing (1).png' },
-    { icon: TrendingUp, title: 'Sales Funnels', description: 'Build automated sales pipelines that convert leads into customers.', image: '/images/Sales (1).png' },
-    { icon: Users, title: 'Internal Approvals', description: 'Speed up approval workflows with automated routing and notifications.', image: '/images/Internal Approval (1).png' },
-    { icon: Database, title: 'Data Syncing', description: 'Keep your systems in sync with real-time data automation.', image: '/images/data_sync (1).png' },
+    { icon: Cog, title: 'Lead & Customer Workflows', description: 'Automate lead capture, nurturing, and customer onboarding processes.', image: getImg('/images/Lead & Workflow (1).png') },
+    { icon: Clock, title: 'Task Management', description: 'Streamline project and task assignments with intelligent automation.', image: getImg('/images/Project_Tasks (1).png') },
+    { icon: Mail, title: 'Email & Marketing Flows', description: 'Create automated email sequences and marketing campaigns.', image: getImg('/images/Marketing (1).png') },
+    { icon: TrendingUp, title: 'Sales Funnels', description: 'Build automated sales pipelines that convert leads into customers.', image: getImg('/images/Sales (1).png') },
+    { icon: Users, title: 'Internal Approvals', description: 'Speed up approval workflows with automated routing and notifications.', image: getImg('/images/Internal Approval (1).png') },
+    { icon: Database, title: 'Data Syncing', description: 'Keep your systems in sync with real-time data automation.', image: getImg('/images/data_sync (1).png') },
   ];
 
   const benefits = [

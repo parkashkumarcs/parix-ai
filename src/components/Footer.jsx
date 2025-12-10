@@ -92,7 +92,7 @@ const Footer = () => {
           <div className="footer-column lg:col-span-2">
             <Link to="/" className="flex items-center mb-4">
               <img
-                src="/images/logodark.png"
+                src={`${import.meta.env.BASE_URL}images/logodark.png`}
                 alt="Parix.ai"
                 className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
               />

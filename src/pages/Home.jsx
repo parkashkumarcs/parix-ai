@@ -6,6 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 // Counter component with scroll-triggered counting animation
 const CounterAnimation = ({ target, duration = 2, suffix = '+' }) => {
   const [count, setCount] = useState(0);
@@ -66,12 +69,12 @@ const CounterAnimation = ({ target, duration = 2, suffix = '+' }) => {
 const Home = () => {
   // Portfolio projects data
   const projects = [
-    { title: 'Kaijo Home', category: 'Ecommerce + Automation', description: 'A modern eCommerce platform integrated with automated inventory sync, order routing, and AI-powered customer support.', image: '/images/Ecomerceweb (1).png' },
-    { title: 'Meta Charter', category: 'Enterprise Dashboard', description: 'A data-driven analytics dashboard with real-time insights, custom reporting, and machine-learning-based forecasting.', image: '/images/Custom UI dashboards (1).png' },
-    { title: 'On-Mob Pro', category: 'Mobile App', description: 'A feature-rich mobile experience built to help customers manage orders, track deliveries, and automate daily operations.', image: '/images/MobileAppBanner (1).png' },
-    { title: 'Brandom Analytics', category: 'SaaS Platform', description: 'Complete SaaS solution for brand performance analytics with automated workflows, triggers, and email reporting.', image: '/images/Portal (1).png' },
-    { title: 'NutriBox Studio', category: 'Marketing Site', description: 'A high-conversion launching website designed for health brands with drag-and-drop CMS management.', image: '/images/Marketing Web solution (1).png' },
-    { title: 'Talent Illustration', category: 'Hiring + AI', description: 'An AI-enabled hiring portal with automated candidate evaluation, performance scoring, and interview workflows.', image: '/images/Lead & Workflow (1).png' },
+    { title: 'Kaijo Home', category: 'Ecommerce + Automation', description: 'A modern eCommerce platform integrated with automated inventory sync, order routing, and AI-powered customer support.', image: getImg('/images/Ecomerceweb (1).png') },
+    { title: 'Meta Charter', category: 'Enterprise Dashboard', description: 'A data-driven analytics dashboard with real-time insights, custom reporting, and machine-learning-based forecasting.', image: getImg('/images/Custom UI dashboards (1).png') },
+    { title: 'On-Mob Pro', category: 'Mobile App', description: 'A feature-rich mobile experience built to help customers manage orders, track deliveries, and automate daily operations.', image: getImg('/images/MobileAppBanner (1).png') },
+    { title: 'Brandom Analytics', category: 'SaaS Platform', description: 'Complete SaaS solution for brand performance analytics with automated workflows, triggers, and email reporting.', image: getImg('/images/Portal (1).png') },
+    { title: 'NutriBox Studio', category: 'Marketing Site', description: 'A high-conversion launching website designed for health brands with drag-and-drop CMS management.', image: getImg('/images/Marketing Web solution (1).png') },
+    { title: 'Talent Illustration', category: 'Hiring + AI', description: 'An AI-enabled hiring portal with automated candidate evaluation, performance scoring, and interview workflows.', image: getImg('/images/Lead & Workflow (1).png') },
   ];
 
   // Services data
@@ -93,9 +96,9 @@ const Home = () => {
 
   // Blog posts data
   const blogPosts = [
-    { title: 'A simple guide to retrieving content models using AI', description: 'Turn unstructured data into organized, actionable content.', image: '/images/data_sync (1).png' },
-    { title: 'How to improve your mobile app experience using visual analytics', description: 'Use data to create better user journeys and retention strategies.', image: '/images/mobileappbann.png' },
-    { title: 'The modern best-practice for building the perfect proprietary workflow design', description: 'A breakdown of automation frameworks for high-growth teams.', image: '/images/WorkflowAutomation (1).png' },
+    { title: 'A simple guide to retrieving content models using AI', description: 'Turn unstructured data into organized, actionable content.', image: getImg('/images/data_sync (1).png') },
+    { title: 'How to improve your mobile app experience using visual analytics', description: 'Use data to create better user journeys and retention strategies.', image: getImg('/images/mobileappbann.png') },
+    { title: 'The modern best-practice for building the perfect proprietary workflow design', description: 'A breakdown of automation frameworks for high-growth teams.', image: getImg('/images/WorkflowAutomation (1).png') },
   ];
 
   // Team members data
@@ -274,7 +277,7 @@ const Home = () => {
         <AnimatedSection animation="fadeIn" start="top 95%" duration={0.8}>
           <div className="w-full">
             <img
-              src="/images/Home_Banner.png"
+              src={getImg('/images/Home_Banner.png')}
               alt="Parix.ai - AI & Development Studio"
               className="w-full h-auto object-cover"
               style={{ maxHeight: '600px', objectFit: 'cover', objectPosition: 'center' }}
@@ -543,7 +546,7 @@ const Home = () => {
       {/* Newsletter Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/images/Web Development (1).png" alt="Newsletter" className="w-full h-full object-cover" />
+          <img src={getImg('/images/Web Development (1).png')} alt="Newsletter" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">

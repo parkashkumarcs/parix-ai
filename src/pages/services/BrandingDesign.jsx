@@ -3,6 +3,9 @@ import { Palette, CheckCircle, ArrowRight, Layers, PenTool, Image, Figma, Film, 
 import { Container, SectionTitle, Button, Card, CardContent, AnimatedSection, Background3D } from '../../components';
 import gsap from 'gsap';
 
+// Helper to get correct image path for GitHub Pages
+const getImg = (path) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 /**
  * Branding & UI/UX Design Service Page
  */
@@ -20,12 +23,12 @@ const BrandingDesign = () => {
   }, []);
 
   const features = [
-    { icon: Award, title: 'Brand Identity', description: 'Complete brand systems including logos, colors, and typography.', image: '/images/Landing page (1).png' },
-    { icon: PenTool, title: 'Logo Design', description: 'Memorable logos that capture your brand essence.', image: '/images/Business websites.png' },
-    { icon: Layers, title: 'UI/UX Design', description: 'Intuitive interfaces that users love to interact with.', image: '/images/Custom UI dashboards (1).png' },
-    { icon: Figma, title: 'Design Systems', description: 'Scalable component libraries for consistent experiences.', image: '/images/Web Development (1).png' },
-    { icon: Image, title: 'Marketing Assets', description: 'Social media graphics, ads, and promotional materials.', image: '/images/Marketing Web solution (1).png' },
-    { icon: Film, title: 'Motion Design', description: 'Animated content that captures attention and engages.', image: '/images/Landing page (2).png' },
+    { icon: Award, title: 'Brand Identity', description: 'Complete brand systems including logos, colors, and typography.', image: getImg('/images/Landing page (1).png') },
+    { icon: PenTool, title: 'Logo Design', description: 'Memorable logos that capture your brand essence.', image: getImg('/images/Business websites.png') },
+    { icon: Layers, title: 'UI/UX Design', description: 'Intuitive interfaces that users love to interact with.', image: getImg('/images/Custom UI dashboards (1).png') },
+    { icon: Figma, title: 'Design Systems', description: 'Scalable component libraries for consistent experiences.', image: getImg('/images/Web Development (1).png') },
+    { icon: Image, title: 'Marketing Assets', description: 'Social media graphics, ads, and promotional materials.', image: getImg('/images/Marketing Web solution (1).png') },
+    { icon: Film, title: 'Motion Design', description: 'Animated content that captures attention and engages.', image: getImg('/images/Landing page (2).png') },
   ];
 
   const benefits = [
