@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Navbar, Footer, ScrollProgress, PageTransition } from './components';
 import {
@@ -30,6 +30,24 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
+
+  return null;
+};
+
+/**
+ * RedirectHandler Component
+ * Handles GitHub Pages 404 redirect for SPA routing
+ */
+const RedirectHandler = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    if (redirectPath) {
+      sessionStorage.removeItem('redirectPath');
+      navigate(redirectPath, { replace: true });
+    }
+  }, [navigate]);
 
   return null;
 };
@@ -69,8 +87,9 @@ const AppContent = () => {
  */
 function App() {
   return (
-    <Router>
+    <Router basename="/parix-ai">
       <ScrollToTop />
+      <RedirectHandler />
       <ScrollProgress />
       <div className="min-h-screen bg-white text-gray-900">
         <Navbar />
