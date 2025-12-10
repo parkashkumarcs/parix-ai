@@ -108,8 +108,12 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-blue-600">
-        <Container size="sm">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/images/Marketing Web solution (1).png" alt="Careers" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-blue-900/70" />
+        </div>
+        <Container size="sm" className="relative z-10">
           <AnimatedSection animation="scaleIn">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Don't see the right role?</h2>

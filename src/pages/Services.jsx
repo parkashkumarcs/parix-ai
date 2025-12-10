@@ -35,6 +35,8 @@ const Services = () => {
       features: ['Lead & customer workflows', 'Project/task management', 'Marketing & email flows', 'Sales funnels', 'Internal approvals', 'Data syncing & reporting', 'Repetitive manual tasks'],
       tools: ['AI Agents', 'Zapier / Make', 'Custom Integrations', 'Webhooks', 'Python automation', 'Workflow engines'],
       outcome: 'Higher efficiency, fewer errors, faster scaling.',
+      image: '/images/WorkflowAutomation (1).png',
+      link: '/services/workflow-automation',
     },
     {
       id: 'web',
@@ -45,6 +47,8 @@ const Services = () => {
       features: ['Business websites', 'Marketing sites', 'Landing pages', 'Corporate portals', 'Custom UI dashboards', 'Ecommerce platforms'],
       tools: ['React', 'Next.js', 'WordPress', 'Laravel', 'Node.js', 'Django', 'Tailwind'],
       outcome: 'Beautiful websites built for speed, SEO, and growth.',
+      image: '/images/Web Development (1).png',
+      link: '/services/web-development',
     },
     {
       id: 'mobile',
@@ -55,6 +59,8 @@ const Services = () => {
       features: ['E-commerce apps', 'SaaS mobile apps', 'Fitness/health apps', 'Marketplace apps', 'CRM/ERP mobile dashboards', 'Custom business tools'],
       tools: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Firebase', 'AWS'],
       outcome: 'Apps that users love. Smooth, scalable, and feature-rich.',
+      image: '/images/MobileAppBanner (1).png',
+      link: '/services/mobile-development',
     },
     {
       id: 'ai',
@@ -65,6 +71,8 @@ const Services = () => {
       features: ['AI chatbots & assistants', 'Data extraction/processing', 'Content generation systems', 'Predictive analytics', 'Custom GPT/LLM integrations', 'AI agents for workflows', 'Computer vision models'],
       tools: ['OpenAI', 'LangChain', 'TensorFlow', 'PyTorch', 'Hugging Face', 'Custom LLMs'],
       outcome: 'Smarter operations, reduced workload, higher productivity.',
+      image: '/images/Gemini_Generated_Image_tqurtetqurtetqur.png',
+      link: '/services/ai-integrations',
     },
     {
       id: 'saas',
@@ -75,6 +83,8 @@ const Services = () => {
       features: ['Product strategy', 'UX/UI design', 'Full-stack development', 'Dashboard systems', 'Subscription & billing', 'AI modules', 'Launch & scaling'],
       tools: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS', 'Docker', 'Kubernetes'],
       outcome: 'Production-ready SaaS built to scale globally.',
+      image: '/images/Portal (1).png',
+      link: '/services/saas-development',
     },
     {
       id: 'design',
@@ -85,6 +95,8 @@ const Services = () => {
       features: ['Brand identity', 'Logo systems', 'UI/UX for apps', 'Design systems', 'Marketing assets', 'Product visuals'],
       tools: ['Figma', 'Adobe Creative Suite', 'Framer', 'Webflow', 'After Effects'],
       outcome: 'A unified brand presence that stands out and converts.',
+      image: '/images/Landing page (1).png',
+      link: '/services/branding-design',
     },
   ];
 
@@ -134,19 +146,27 @@ const Services = () => {
                   <p className="text-gray-900">{service.outcome}</p>
                 </div>
 
-                <Button to="/contact" icon={ArrowRight} iconPosition="right">Get Started</Button>
+                <div className="flex flex-wrap gap-4">
+                  <Button to={service.link} icon={ArrowRight} iconPosition="right">Learn More</Button>
+                  <Button to="/contact" variant="secondary">Get Started</Button>
+                </div>
               </AnimatedSection>
 
-              {/* Tech Stack */}
+              {/* Image & Tech Stack */}
               <AnimatedSection animation={index % 2 === 0 ? 'slideRight' : 'slideLeft'} delay={0.2} className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <Card variant="default" className="p-8">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Technologies & Tools</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {service.tools.map((tool, i) => (
-                      <span key={i} className="px-4 py-2 bg-gray-100 rounded-lg text-gray-700 text-sm border border-gray-200">
-                        {tool}
-                      </span>
-                    ))}
+                <Card variant="default" className="overflow-hidden">
+                  <div className="aspect-video overflow-hidden img-hover-overlay">
+                    <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4">Technologies & Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {service.tools.map((tool, i) => (
+                        <span key={i} className="px-4 py-2 bg-gray-100 rounded-lg text-gray-700 text-sm border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-200">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </Card>
               </AnimatedSection>
@@ -156,8 +176,12 @@ const Services = () => {
       ))}
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-blue-600">
-        <Container size="sm">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/images/Web Development (1).png" alt="Services" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-blue-900/70" />
+        </div>
+        <Container size="sm" className="relative z-10">
           <AnimatedSection animation="scaleIn">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Ready to transform your business?</h2>

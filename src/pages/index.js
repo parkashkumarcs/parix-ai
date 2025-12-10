@@ -10,3 +10,11 @@ export { default as Blog } from './Blog';
 export { default as Careers } from './Careers';
 export { default as PrivacyPolicy } from './PrivacyPolicy';
 
+// Service Pages Export
+export { default as WorkflowAutomation } from './services/WorkflowAutomation';
+export { default as WebDevelopment } from './services/WebDevelopment';
+export { default as MobileDevelopment } from './services/MobileDevelopment';
+export { default as AIIntegrations } from './services/AIIntegrations';
+export { default as BrandingDesign } from './services/BrandingDesign';
+export { default as SaaSDevelopment } from './services/SaaSDevelopment';
+

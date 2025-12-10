@@ -12,6 +12,12 @@ import {
   Blog,
   Careers,
   PrivacyPolicy,
+  WorkflowAutomation,
+  WebDevelopment,
+  MobileDevelopment,
+  AIIntegrations,
+  BrandingDesign,
+  SaaSDevelopment,
 } from './pages';
 
 /**
@@ -39,6 +45,12 @@ const AppContent = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/services/workflow-automation" element={<WorkflowAutomation />} />
+        <Route path="/services/web-development" element={<WebDevelopment />} />
+        <Route path="/services/mobile-development" element={<MobileDevelopment />} />
+        <Route path="/services/ai-integrations" element={<AIIntegrations />} />
+        <Route path="/services/branding-design" element={<BrandingDesign />} />
+        <Route path="/services/saas-development" element={<SaaSDevelopment />} />
         <Route path="/process" element={<Process />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />

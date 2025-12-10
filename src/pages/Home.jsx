@@ -13,12 +13,12 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   // Portfolio projects data
   const projects = [
-    { title: 'Kaijo Home', category: 'Ecommerce + Automation', description: 'A modern eCommerce platform integrated with automated inventory sync, order routing, and AI-powered customer support.', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80' },
-    { title: 'Meta Charter', category: 'Enterprise Dashboard', description: 'A data-driven analytics dashboard with real-time insights, custom reporting, and machine-learning-based forecasting.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80' },
-    { title: 'On-Mob Pro', category: 'Mobile App', description: 'A feature-rich mobile experience built to help customers manage orders, track deliveries, and automate daily operations.', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80' },
-    { title: 'Brandom Analytics', category: 'SaaS Platform', description: 'Complete SaaS solution for brand performance analytics with automated workflows, triggers, and email reporting.', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80' },
-    { title: 'NutriBox Studio', category: 'Marketing Site', description: 'A high-conversion launching website designed for health brands with drag-and-drop CMS management.', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80' },
-    { title: 'Talent Illustration', category: 'Hiring + AI', description: 'An AI-enabled hiring portal with automated candidate evaluation, performance scoring, and interview workflows.', image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80' },
+    { title: 'Kaijo Home', category: 'Ecommerce + Automation', description: 'A modern eCommerce platform integrated with automated inventory sync, order routing, and AI-powered customer support.', image: '/images/Ecomerceweb (1).png' },
+    { title: 'Meta Charter', category: 'Enterprise Dashboard', description: 'A data-driven analytics dashboard with real-time insights, custom reporting, and machine-learning-based forecasting.', image: '/images/Custom UI dashboards (1).png' },
+    { title: 'On-Mob Pro', category: 'Mobile App', description: 'A feature-rich mobile experience built to help customers manage orders, track deliveries, and automate daily operations.', image: '/images/MobileAppBanner (1).png' },
+    { title: 'Brandom Analytics', category: 'SaaS Platform', description: 'Complete SaaS solution for brand performance analytics with automated workflows, triggers, and email reporting.', image: '/images/Portal (1).png' },
+    { title: 'NutriBox Studio', category: 'Marketing Site', description: 'A high-conversion launching website designed for health brands with drag-and-drop CMS management.', image: '/images/Marketing Web solution (1).png' },
+    { title: 'Talent Illustration', category: 'Hiring + AI', description: 'An AI-enabled hiring portal with automated candidate evaluation, performance scoring, and interview workflows.', image: '/images/Lead & Workflow (1).png' },
   ];
 
   // Services data
@@ -40,9 +40,9 @@ const Home = () => {
 
   // Blog posts data
   const blogPosts = [
-    { title: 'A simple guide to retrieving content models using AI', description: 'Turn unstructured data into organized, actionable content.', image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80' },
-    { title: 'How to improve your mobile app experience using visual analytics', description: 'Use data to create better user journeys and retention strategies.', image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80' },
-    { title: 'The modern best-practice for building the perfect proprietary workflow design', description: 'A breakdown of automation frameworks for high-growth teams.', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80' },
+    { title: 'A simple guide to retrieving content models using AI', description: 'Turn unstructured data into organized, actionable content.', image: '/images/data_sync (1).png' },
+    { title: 'How to improve your mobile app experience using visual analytics', description: 'Use data to create better user journeys and retention strategies.', image: '/images/mobileappbann.png' },
+    { title: 'The modern best-practice for building the perfect proprietary workflow design', description: 'A breakdown of automation frameworks for high-growth teams.', image: '/images/WorkflowAutomation (1).png' },
   ];
 
   // Team members data
@@ -344,8 +344,12 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 lg:py-32 bg-blue-600">
-        <Container size="sm">
+      <section className="py-20 lg:py-32 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src="/images/Web Development (1).png" alt="Newsletter" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-blue-900/70" />
+        </div>
+        <Container size="sm" className="relative z-10">
           <AnimatedSection animation="fadeUp">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Stay updated. Stay ahead.</h2>
