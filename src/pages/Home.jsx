@@ -1,10 +1,63 @@
-import { useEffect, useRef } from 'react';
-import { ArrowRight, Phone, Zap, Globe, Smartphone, Brain, Palette, Award, Users, TrendingUp, CheckCircle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Phone, Zap, Globe, Smartphone, Brain, Palette, Award, Users, TrendingUp, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Container, SectionTitle, Button, Card, CardContent, CardTitle, CardDescription, CardBadge, Testimonial, Stats, AnimatedSection, Background3D } from '../components';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Counter component with scroll-triggered counting animation
+const CounterAnimation = ({ target, duration = 2, suffix = '+' }) => {
+  const [count, setCount] = useState(0);
+  const counterRef = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const element = counterRef.current;
+    if (!element) return;
+
+    const animateCount = () => {
+      if (hasAnimated.current) {
+        // Reset and re-animate
+        setCount(0);
+      }
+      hasAnimated.current = true;
+
+      const obj = { value: 0 };
+      gsap.to(obj, {
+        value: target,
+        duration: duration,
+        ease: 'power2.out',
+        onUpdate: () => {
+          setCount(Math.floor(obj.value));
+        },
+      });
+    };
+
+    const resetCount = () => {
+      setCount(0);
+      hasAnimated.current = false;
+    };
+
+    const scrollTrigger = ScrollTrigger.create({
+      trigger: element,
+      start: 'top 85%',
+      end: 'bottom 15%',
+      onEnter: animateCount,
+      onEnterBack: animateCount,
+      onLeave: resetCount,
+      onLeaveBack: resetCount,
+    });
+
+    return () => scrollTrigger.kill();
+  }, [target, duration]);
+
+  return (
+    <span ref={counterRef}>
+      {count}{suffix}
+    </span>
+  );
+};
 
 /**
  * Home Page Component
@@ -52,6 +105,53 @@ const Home = () => {
     { name: 'Michael Park', role: 'AI Lead', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80' },
     { name: 'Emma Davis', role: 'Design Director', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80' },
   ];
+
+  // Testimonials data
+  const testimonials = [
+    {
+      quote: "Parix.ai redefined how our team works. Automations that once took days now run in seconds. Their development and AI expertise is unmatched.",
+      author: "Daniel M.",
+      role: "Founder & CEO",
+      company: "TechFlow Inc.",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80",
+      rating: 5
+    },
+    {
+      quote: "The team at Parix.ai delivered our SaaS platform ahead of schedule. Their attention to detail and commitment to quality exceeded our expectations.",
+      author: "Sarah Williams",
+      role: "Product Manager",
+      company: "CloudScale",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&q=80",
+      rating: 5
+    },
+    {
+      quote: "Working with Parix.ai was a game-changer. They automated our entire workflow, saving us 40+ hours per week. Highly recommended!",
+      author: "James Rodriguez",
+      role: "Operations Director",
+      company: "Nexus Solutions",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80",
+      rating: 5
+    },
+    {
+      quote: "From concept to launch, Parix.ai was with us every step. Their mobile app development skills are top-notch and the support is exceptional.",
+      author: "Emily Chen",
+      role: "Startup Founder",
+      company: "GrowthLabs",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80",
+      rating: 5
+    }
+  ];
+
+  // Testimonial slider state
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   // Hero animation ref
   const heroRef = useRef(null);
@@ -184,7 +284,7 @@ const Home = () => {
       </section>
 
       {/* Impact Section */}
-      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
+      <section className="py-20 lg:py-32 bg-blue-50 overflow-hidden">
         <Container>
           <AnimatedSection animation="fadeUp" start="top 85%" duration={0.7}>
             <SectionTitle
@@ -196,10 +296,12 @@ const Home = () => {
 
           <AnimatedSection animation="scaleIn" delay={0.15} start="top 85%" duration={0.7}>
             <div className="max-w-4xl mx-auto">
-              <div className="text-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm">
-                <div className="text-6xl md:text-8xl font-bold text-blue-600 mb-4">81+</div>
-                <p className="text-lg text-gray-700 mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
-                <p className="text-gray-500">Our work reduces operational cost, boosts productivity, and enables teams to do more with less.</p>
+              <div className="text-center p-8 md:p-12 rounded-3xl shadow-xl" style={{ backgroundColor: '#121212' }}>
+                <div className="text-6xl md:text-8xl font-bold text-blue-400 mb-4">
+                  <CounterAnimation target={81} duration={2} suffix="+" />
+                </div>
+                <p className="text-lg text-white mb-2">Workflows automated, digital products launched, and systems transformed across North America, Europe, and Asia.</p>
+                <p className="text-gray-300">Our work reduces operational cost, boosts productivity, and enables teams to do more with less.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -325,9 +427,90 @@ const Home = () => {
           <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="Testimonials" title="What Our Clients Say" />
           </AnimatedSection>
+
           <AnimatedSection animation="scaleIn" delay={0.15} start="top 85%">
-            <div className="max-w-3xl mx-auto">
-              <Testimonial quote="Parix.ai redefined how our team works. Automations that once took days now run in seconds. Their development and AI expertise is unmatched." author="Daniel M." role="Founder & CEO" rating={5} />
+            <div className="max-w-4xl mx-auto">
+              {/* Slider Container */}
+              <div className="relative">
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevTestimonial}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-all duration-300 hover:scale-110"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                </button>
+                <button
+                  onClick={nextTestimonial}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-all duration-300 hover:scale-110"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                </button>
+
+                {/* Testimonial Card */}
+                <div className="overflow-hidden px-2">
+                  <div
+                    className="flex transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+                  >
+                    {testimonials.map((testimonial, index) => (
+                      <div key={index} className="w-full flex-shrink-0 px-2">
+                        <div className="p-6 md:p-8 bg-white border border-gray-200 rounded-2xl shadow-sm">
+                          {/* Rating Stars */}
+                          <div className="flex space-x-1 mb-4">
+                            {[...Array(5)].map((_, i) => (
+                              <svg
+                                key={i}
+                                className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`}
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                              </svg>
+                            ))}
+                          </div>
+
+                          {/* Quote */}
+                          <blockquote className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
+                            "{testimonial.quote}"
+                          </blockquote>
+
+                          {/* Author */}
+                          <div className="flex items-center">
+                            <img
+                              src={testimonial.image}
+                              alt={testimonial.author}
+                              className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover mr-4 border-2 border-blue-100"
+                            />
+                            <div>
+                              <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                              <p className="text-sm text-gray-500">
+                                {testimonial.role}, {testimonial.company}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Pagination Dots */}
+                <div className="flex justify-center items-center space-x-2 mt-8">
+                  {testimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentTestimonial(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentTestimonial === index
+                          ? 'bg-blue-600 w-8'
+                          : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to testimonial ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </AnimatedSection>
         </Container>
