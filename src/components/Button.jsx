@@ -18,17 +18,17 @@ const Button = ({
   iconPosition = 'left',
   ...props
 }) => {
-  // Base styles - Light Theme
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white';
+  // Base styles with enhanced transitions
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.97]';
 
-  // Variant styles - Professional Light Theme
+  // Variant styles with professional hover effects
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg focus:ring-blue-500',
-    secondary: 'bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200 focus:ring-gray-400',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500',
-    ghost: 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-400',
-    dark: 'bg-gray-800 text-white hover:bg-gray-900 focus:ring-gray-600',
-    white: 'bg-white text-blue-600 hover:bg-gray-100 shadow-md hover:shadow-lg focus:ring-blue-500',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-0.5 shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 focus:ring-blue-500',
+    secondary: 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 focus:ring-gray-400',
+    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/25 focus:ring-blue-500',
+    ghost: 'text-gray-600 hover:text-blue-600 hover:bg-blue-50 focus:ring-gray-400',
+    dark: 'bg-gray-900 text-white hover:bg-gray-800 hover:-translate-y-0.5 shadow-lg shadow-gray-900/25 hover:shadow-xl focus:ring-gray-600',
+    white: 'bg-white text-blue-600 hover:bg-gray-50 hover:-translate-y-0.5 shadow-lg shadow-black/10 hover:shadow-xl focus:ring-blue-500',
   };
 
   // Size styles

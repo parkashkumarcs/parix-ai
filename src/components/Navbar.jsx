@@ -82,13 +82,16 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
                   location.pathname === link.path
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    ? 'text-blue-600'
+                    : 'text-gray-600 hover:text-blue-600'
                 }`}
               >
                 {link.name}
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-blue-600 rounded-full transition-all duration-300 ${
+                  location.pathname === link.path ? 'w-4/5' : 'w-0 group-hover:w-4/5'
+                }`} />
               </Link>
             ))}
           </div>
@@ -97,7 +100,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-4">
             <Link
               to="/contact"
-              className="px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="px-5 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 active:scale-[0.97]"
             >
               Get Started
             </Link>
@@ -116,7 +119,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`lg:hidden transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -125,10 +128,10 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
+              className={`block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300 ${
                 location.pathname === link.path
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  ? 'text-blue-600 bg-blue-50 border-l-4 border-blue-600'
+                  : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50/50 hover:translate-x-1'
               }`}
             >
               {link.name}
@@ -136,7 +139,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="block px-4 py-3 mt-4 text-center bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+            className="block px-4 py-3 mt-4 text-center bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-600/25 transition-all duration-300 active:scale-[0.97]"
           >
             Get Started
           </Link>

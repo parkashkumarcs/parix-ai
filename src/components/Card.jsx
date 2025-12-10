@@ -26,9 +26,9 @@ const Card = ({
     dark: 'bg-gray-50 border border-gray-200',
   };
 
-  // Hover styles - Light Theme
+  // Enhanced hover styles with professional animation
   const hoverStyles = hoverable
-    ? 'transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-300'
+    ? 'transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-200'
     : '';
 
   // Combine all styles
