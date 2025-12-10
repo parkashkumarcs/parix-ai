@@ -204,8 +204,8 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project, index) => (
                 <Card key={index} variant="gradient" className="group overflow-hidden">
-                  <div className="aspect-video overflow-hidden">
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="aspect-video img-hover-overlay">
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                   </div>
                   <CardContent>
                     <CardBadge>{project.category}</CardBadge>
@@ -292,10 +292,10 @@ const Home = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
                 <div key={index} className="text-center group">
-                  <div className="relative mb-4 overflow-hidden rounded-2xl aspect-square shadow-md">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="relative mb-4 rounded-2xl aspect-square shadow-md img-hover-lift">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover rounded-2xl" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">{member.name}</h3>
+                  <h3 className="font-semibold text-gray-900 transition-colors duration-300 group-hover:text-blue-600">{member.name}</h3>
                   <p className="text-sm text-gray-500">{member.role}</p>
                 </div>
               ))}
@@ -329,8 +329,8 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {blogPosts.map((post, index) => (
                 <Card key={index} to="/blog" variant="default" className="group overflow-hidden">
-                  <div className="aspect-video overflow-hidden">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="aspect-video img-hover-bright">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
                   </div>
                   <CardContent>
                     <CardTitle className="text-lg">{post.title}</CardTitle>

@@ -101,8 +101,8 @@ const CaseStudies = () => {
                 <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image */}
                   <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <div className="aspect-video rounded-2xl overflow-hidden shadow-md">
-                      <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
+                    <div className="aspect-video rounded-2xl shadow-md img-hover-overlay group cursor-pointer">
+                      <img src={study.image} alt={study.title} className="w-full h-full object-cover rounded-2xl" />
                     </div>
                   </div>
 

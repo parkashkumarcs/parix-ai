@@ -123,8 +123,8 @@ const Blog = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
                 <Card key={index} variant="default" className="group overflow-hidden cursor-pointer">
-                  <div className="aspect-video overflow-hidden">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="aspect-video img-hover-bright">
+                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
                   </div>
                   <CardContent>
                     <div className="flex items-center gap-4 mb-3">

@@ -70,17 +70,27 @@ const Card = ({
 };
 
 /**
- * CardImage - Image container for Card
+ * CardImage - Image container for Card with smooth hover
  */
-export const CardImage = ({ src, alt, className = '' }) => (
-  <div className={`relative overflow-hidden ${className}`}>
-    <img
-      src={src}
-      alt={alt}
-      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
-);
+export const CardImage = ({ src, alt, className = '', hoverEffect = 'overlay' }) => {
+  const effectClasses = {
+    overlay: 'img-hover-overlay',
+    bright: 'img-hover-bright',
+    lift: 'img-hover-lift',
+    zoom: 'img-hover-zoom',
+    smooth: 'card-img-smooth',
+  };
+
+  return (
+    <div className={`relative ${effectClasses[hoverEffect] || effectClasses.overlay} ${className}`}>
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  );
+};
 
 /**
  * CardContent - Content container for Card
