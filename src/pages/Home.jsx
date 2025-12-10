@@ -169,10 +169,24 @@ const Home = () => {
         </Container>
       </section>
 
+      {/* Banner Section */}
+      <section className="w-full overflow-hidden">
+        <AnimatedSection animation="fadeIn" start="top 95%" duration={0.8}>
+          <div className="w-full">
+            <img
+              src="/images/Home_Banner.png"
+              alt="Parix.ai - AI & Development Studio"
+              className="w-full h-auto object-cover"
+              style={{ maxHeight: '600px', objectFit: 'cover', objectPosition: 'center' }}
+            />
+          </div>
+        </AnimatedSection>
+      </section>
+
       {/* Impact Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
         <Container>
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%" duration={0.7}>
             <SectionTitle
               label="Our Impact"
               title="We help companies grow through automation-driven digital innovation."
@@ -180,7 +194,7 @@ const Home = () => {
             />
           </AnimatedSection>
 
-          <AnimatedSection animation="scaleIn" delay={0.2}>
+          <AnimatedSection animation="scaleIn" delay={0.15} start="top 85%" duration={0.7}>
             <div className="max-w-4xl mx-auto">
               <div className="text-center p-8 bg-white rounded-3xl border border-gray-200 shadow-sm">
                 <div className="text-6xl md:text-8xl font-bold text-blue-600 mb-4">81+</div>
@@ -196,11 +210,11 @@ const Home = () => {
       <section className="relative py-20 lg:py-32 overflow-hidden">
         <Background3D variant="minimal" />
         <Container className="relative z-10">
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="Our Work" title="Featured Projects" subtitle="Explore our portfolio of successful digital transformations." />
           </AnimatedSection>
 
-          <AnimatedSection animation="stagger" stagger={0.1}>
+          <AnimatedSection animation="stagger" stagger={0.08} start="top 85%">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {projects.map((project, index) => (
                 <Card key={index} variant="gradient" className="group overflow-hidden">
@@ -220,10 +234,10 @@ const Home = () => {
       </section>
 
       {/* Why Work With Us Section */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-white overflow-hidden">
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection animation="slideLeft">
+            <AnimatedSection animation="slideLeft" start="top 85%">
               <SectionTitle align="left" label="Why Us" title="We build faster, smarter, and stronger digital ecosystems." subtitle="Our team blends engineering, automation, and design expertise to ship reliable, scalable, and future-proof products." />
               <p className="text-gray-600 mb-6">We help brands accelerate growth with:</p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
@@ -236,7 +250,7 @@ const Home = () => {
               </ul>
               <Button to="/contact" icon={ArrowRight} iconPosition="right">Work With Us</Button>
             </AnimatedSection>
-            <AnimatedSection animation="slideRight" delay={0.2}>
+            <AnimatedSection animation="slideRight" delay={0.15} start="top 85%">
               <div className="aspect-square rounded-3xl bg-blue-50 border border-blue-100 p-8 flex items-center justify-center">
                 <div className="text-center">
                   <TrendingUp className="w-24 h-24 text-blue-600 mx-auto mb-4" />
@@ -249,12 +263,12 @@ const Home = () => {
       </section>
 
       {/* Services Overview Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
         <Container>
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="What We Do" title="Our Core Services" subtitle="Comprehensive solutions to power your digital transformation." />
           </AnimatedSection>
-          <AnimatedSection animation="stagger" stagger={0.15}>
+          <AnimatedSection animation="stagger" stagger={0.1} start="top 85%">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {services.map((service, index) => (
                 <Card key={index} variant="default" className="p-8 text-center">
@@ -271,9 +285,9 @@ const Home = () => {
       </section>
 
       {/* Collaboration Section */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="py-20 lg:py-32 bg-white overflow-hidden">
         <Container>
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <div className="max-w-4xl mx-auto text-center">
               <SectionTitle title="We collaborate closely with founders, startups, and enterprises." subtitle="Working with Parix.ai means working with real people who care about your product as much as you do." />
               <p className="text-gray-600 mb-8">We transform ideas into production-ready systems with a mix of creativity, clarity, and engineering excellence.</p>
@@ -283,12 +297,12 @@ const Home = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
         <Container>
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="Our Team" title="Meet the team behind your next big leap." subtitle="A passionate group of developers, designers, and AI engineers dedicated to building systems that scale." />
           </AnimatedSection>
-          <AnimatedSection animation="stagger" stagger={0.1}>
+          <AnimatedSection animation="stagger" stagger={0.08} start="top 85%">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
                 <div key={index} className="text-center group">
@@ -308,10 +322,10 @@ const Home = () => {
       <section className="relative py-20 lg:py-32 bg-white overflow-hidden">
         <Background3D variant="minimal" />
         <Container className="relative z-10">
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="Testimonials" title="What Our Clients Say" />
           </AnimatedSection>
-          <AnimatedSection animation="scaleIn" delay={0.2}>
+          <AnimatedSection animation="scaleIn" delay={0.15} start="top 85%">
             <div className="max-w-3xl mx-auto">
               <Testimonial quote="Parix.ai redefined how our team works. Automations that once took days now run in seconds. Their development and AI expertise is unmatched." author="Daniel M." role="Founder & CEO" rating={5} />
             </div>
@@ -320,12 +334,12 @@ const Home = () => {
       </section>
 
       {/* Blog Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
         <Container>
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <SectionTitle label="Insights" title="Insights that move businesses forward." subtitle="We share strategies, tutorials, and automation frameworks to help you scale faster and smarter." />
           </AnimatedSection>
-          <AnimatedSection animation="stagger" stagger={0.1}>
+          <AnimatedSection animation="stagger" stagger={0.08} start="top 85%">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {blogPosts.map((post, index) => (
                 <Card key={index} to="/blog" variant="default" className="group overflow-hidden">
@@ -350,7 +364,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-blue-900/70" />
         </div>
         <Container size="sm" className="relative z-10">
-          <AnimatedSection animation="fadeUp">
+          <AnimatedSection animation="fadeUp" start="top 85%">
             <div className="text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Stay updated. Stay ahead.</h2>
               <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-8">Join our newsletter to receive automation tips, product updates, and business insights.</p>
