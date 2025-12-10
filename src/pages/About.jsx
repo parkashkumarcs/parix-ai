@@ -129,15 +129,24 @@ const About = () => {
           </AnimatedSection>
           <AnimatedSection animation="stagger" stagger={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {differentiators.map((item, index) => (
-                <Card key={index} variant="default" className="p-6 text-center">
-                  <div className="w-14 h-14 mx-auto mb-4 bg-blue-100 rounded-xl flex items-center justify-center">
-                    <item.icon className="w-7 h-7 text-blue-600" />
+              {differentiators.map((item, index) => {
+                const cardStyles = [
+                  { bg: 'bg-gradient-to-br from-blue-500 to-blue-600', iconBg: 'bg-white/20', iconColor: 'text-white', titleColor: 'text-white', textColor: 'text-blue-100' },
+                  { bg: 'bg-gradient-to-br from-emerald-500 to-teal-600', iconBg: 'bg-white/20', iconColor: 'text-white', titleColor: 'text-white', textColor: 'text-emerald-100' },
+                  { bg: 'bg-gradient-to-br from-orange-500 to-amber-500', iconBg: 'bg-white/20', iconColor: 'text-white', titleColor: 'text-white', textColor: 'text-orange-100' },
+                  { bg: 'bg-gradient-to-br from-purple-500 to-violet-600', iconBg: 'bg-white/20', iconColor: 'text-white', titleColor: 'text-white', textColor: 'text-purple-100' },
+                ];
+                const style = cardStyles[index];
+                return (
+                  <div key={index} className={`p-6 text-center rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${style.bg}`}>
+                    <div className={`w-14 h-14 mx-auto mb-4 ${style.iconBg} rounded-xl flex items-center justify-center backdrop-blur-sm`}>
+                      <item.icon className={`w-7 h-7 ${style.iconColor}`} />
+                    </div>
+                    <h3 className={`text-lg font-semibold ${style.titleColor} mb-2`}>{item.title}</h3>
+                    <p className={`${style.textColor} text-sm`}>{item.description}</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-500 text-sm">{item.description}</p>
-                </Card>
-              ))}
+                );
+              })}
             </div>
           </AnimatedSection>
         </Container>

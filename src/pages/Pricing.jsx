@@ -97,21 +97,25 @@ const Pricing = () => {
       {/* Pricing Cards */}
       <section className="py-20 lg:py-32 bg-gray-50">
         <Container>
-          <AnimatedSection animation="stagger" stagger={0.15}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
-              {plans.map((plan, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+            {plans.map((plan, index) => {
+              const cardStyles = [
+                { bg: 'bg-gradient-to-br from-emerald-500 to-teal-600', badgeBg: 'bg-white/20', priceColor: 'text-white', titleColor: 'text-white', descColor: 'text-emerald-100', featureColor: 'text-white', checkColor: 'text-emerald-200', btnVariant: 'white' },
+                { bg: 'bg-gradient-to-br from-blue-600 to-indigo-700', badgeBg: 'bg-white', priceColor: 'text-white', titleColor: 'text-white', descColor: 'text-blue-100', featureColor: 'text-white', checkColor: 'text-blue-200', btnVariant: 'white' },
+                { bg: 'bg-gradient-to-br from-purple-600 to-violet-700', badgeBg: 'bg-white/20', priceColor: 'text-white', titleColor: 'text-white', descColor: 'text-purple-100', featureColor: 'text-white', checkColor: 'text-purple-200', btnVariant: 'white' },
+              ];
+              const style = cardStyles[index];
+
+              const cardContent = (
                 <div
-                  key={index}
-                  className={`rounded-2xl ${
-                    plan.popular
-                      ? 'bg-white border-2 border-blue-600 shadow-xl md:scale-105'
-                      : 'bg-white border border-gray-200 shadow-sm'
+                  className={`rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${style.bg} ${
+                    plan.popular ? 'h-full' : ''
                   }`}
                 >
                   {/* Badge Area - Always reserve space */}
                   <div className="h-8 flex items-end justify-center">
                     {plan.popular && (
-                      <div className="px-4 py-1.5 bg-blue-600 text-white rounded-full text-sm font-semibold whitespace-nowrap translate-y-1/2">
+                      <div className={`px-4 py-1.5 ${style.badgeBg} text-blue-600 rounded-full text-sm font-semibold whitespace-nowrap translate-y-1/2`}>
                         Most Popular
                       </div>
                     )}
@@ -120,31 +124,48 @@ const Pricing = () => {
                   {/* Card Content */}
                   <div className="p-8 pt-4">
                     <div className="text-center mb-8">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                      <p className="text-gray-500 mb-4">{plan.description}</p>
+                      <h3 className={`text-2xl font-bold ${style.titleColor} mb-2`}>{plan.name}</h3>
+                      <p className={`${style.descColor} mb-4`}>{plan.description}</p>
                       <div className="flex items-baseline justify-center">
-                        <span className="text-5xl font-bold text-blue-600">{plan.price}</span>
-                        <span className="text-gray-500 ml-1">{plan.period}</span>
+                        <span className={`text-5xl font-bold ${style.priceColor}`}>{plan.price}</span>
+                        <span className={`${style.descColor} ml-1`}>{plan.period}</span>
                       </div>
                     </div>
 
                     <ul className="space-y-4 mb-8">
                       {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-center text-gray-700">
-                          <Check className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
+                        <li key={i} className={`flex items-center ${style.featureColor}`}>
+                          <Check className={`w-5 h-5 ${style.checkColor} mr-3 flex-shrink-0`} />
                           {feature}
                         </li>
                       ))}
                     </ul>
 
-                    <Button to="/contact" variant={plan.popular ? 'primary' : 'outline'} className="w-full" icon={ArrowRight} iconPosition="right">
+                    <Button to="/contact" variant="ghost" className="w-full !bg-white/15 border-2 border-white/40 !text-white hover:!bg-white hover:!text-gray-900 hover:border-white" icon={ArrowRight} iconPosition="right">
                       {plan.cta}
                     </Button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </AnimatedSection>
+              );
+
+              // Wrap popular card with gradient border
+              if (plan.popular) {
+                return (
+                  <AnimatedSection key={index} animation="scaleIn" delay={index * 0.15} once={false}>
+                    <div className="md:scale-105 p-[3px] rounded-[20px] bg-gradient-to-r from-pink-500 via-amber-400 to-cyan-400 shadow-[0_0_40px_rgba(251,191,36,0.3)] hover:shadow-[0_0_50px_rgba(251,191,36,0.5)] transition-all duration-300">
+                      {cardContent}
+                    </div>
+                  </AnimatedSection>
+                );
+              }
+
+              return (
+                <AnimatedSection key={index} animation="scaleIn" delay={index * 0.15} once={false}>
+                  {cardContent}
+                </AnimatedSection>
+              );
+            })}
+          </div>
         </Container>
       </section>
 
