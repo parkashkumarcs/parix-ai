@@ -561,3 +561,8 @@ img {
 .card-img-smooth:hover img {
   transform: scale(1.06);
 }
+
+/* Design Services Section Background */
+.design-services-section {
+  background-color: #f0f9ff; /* Light blue background */
+}

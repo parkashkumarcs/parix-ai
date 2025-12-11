@@ -65,7 +65,7 @@ const BrandingDesign = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-32 design-services-section">
         <Container>
           <AnimatedSection animation="fadeIn">
             <h2 className="text-3xl lg:text-4xl font-bold text-center text-gray-900 mb-4">Design Services</h2>
